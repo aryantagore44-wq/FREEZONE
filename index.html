@@ -10,6 +10,7 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #gameCanvas{display:block;width:100vw;height:100vh;cursor:crosshair;}
 #hud{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;}
 
+/* HEALTH */
 #health-wrap{position:absolute;bottom:200px;left:16px;}
 #hp-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
 #hp-bar-bg{width:130px;height:12px;background:rgba(0,0,0,.6);border-radius:6px;border:1.5px solid #ff4455;overflow:hidden;}
@@ -18,43 +19,54 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #sp-bar-bg{width:130px;height:7px;background:rgba(0,0,0,.6);border-radius:4px;border:1.5px solid #44aaff;overflow:hidden;}
 #sp-bar{height:100%;background:linear-gradient(90deg,#2255ff,#55ccff);border-radius:4px;width:70%;}
 
+/* AMMO */
 #ammo-wrap{position:absolute;bottom:200px;right:16px;text-align:right;}
 #gun-name{color:#ffcc44;font-size:11px;letter-spacing:3px;font-weight:bold;margin-bottom:2px;}
 #ammo-cur{color:#fff;font-size:36px;font-weight:900;line-height:1;text-shadow:0 0 14px #fa0;}
 #ammo-res{color:#888;font-size:14px;}
 
+/* KILLS / ALIVE */
 #kills-wrap{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:6px;}
 #kills-num{color:#ff4444;font-size:22px;font-weight:900;text-shadow:0 0 10px #f44;}
 #alive-wrap{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.45);padding:4px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:bold;}
 
+/* CROSSHAIR */
 #xhair{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;pointer-events:none;}
 #xhair::before,#xhair::after{content:'';position:absolute;background:rgba(255,255,255,.9);}
 #xhair::before{width:2px;height:22px;left:10px;top:0;}
 #xhair::after{width:22px;height:2px;top:10px;left:0;}
 .xdot{position:absolute;top:9px;left:9px;width:4px;height:4px;background:#f44;border-radius:50%;}
 
+/* HIT MARKER */
 #hitmark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;opacity:0;pointer-events:none;}
 #hitmark.on{opacity:1;}
 
+/* KILLFEED */
 #killfeed{position:absolute;top:56px;right:14px;display:flex;flex-direction:column;gap:4px;}
 .kfeed{background:rgba(0,0,0,.65);padding:4px 10px;border-radius:4px;font-size:12px;color:#fff;border-left:2px solid #f44;animation:kfade 3s forwards;}
 @keyframes kfade{0%,80%{opacity:1}100%{opacity:0}}
 
+/* ZONE WARN */
 #zone-warn{position:absolute;top:52px;left:50%;transform:translateX(-50%);background:rgba(200,50,0,.8);color:#fff;padding:5px 16px;border-radius:18px;font-size:12px;font-weight:bold;display:none;border:1px solid #f60;animation:zp .7s infinite alternate;}
 @keyframes zp{from{opacity:.7}to{opacity:1}}
 
+/* DAMAGE */
 #dmg{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(255,0,0,.55) 100%);opacity:0;pointer-events:none;transition:opacity .1s;}
 
+/* MINIMAP */
 #minimap{position:absolute;top:14px;left:14px;width:100px;height:100px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.3);}
 #mmcv{width:100px;height:100px;}
 
+/* RELOAD BAR */
 #rl-wrap{position:absolute;bottom:50%;left:50%;transform:translate(-50%,50%);width:160px;display:none;text-align:center;}
 #rl-bg{width:100%;height:6px;background:rgba(255,255,255,.2);border-radius:3px;}
 #rl-fill{height:100%;background:#fc0;border-radius:3px;width:0%;}
 #rl-txt{color:#fc0;font-size:11px;margin-top:4px;letter-spacing:2px;}
 
+/* MULTIPLAYER TAG */
 #mp-tag{position:absolute;top:52px;left:50%;transform:translateX(-50%);background:rgba(0,80,180,.75);color:#aaddff;padding:4px 14px;border-radius:14px;font-size:11px;letter-spacing:2px;display:none;border:1px solid #44aaff;}
 
+/* MOBILE JOYSTICKS */
 #joy-left-area{position:absolute;bottom:20px;left:16px;width:130px;height:130px;pointer-events:all;}
 #joy-left-base{position:absolute;top:0;left:0;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.22);}
 #joy-left-knob{position:absolute;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,60,.88),rgba(220,110,0,.75));box-shadow:0 0 14px rgba(255,160,0,.55);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;transition:top .06s,left .06s;}
@@ -62,6 +74,7 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #joy-right-base{position:absolute;top:0;left:0;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.15);}
 #joy-right-knob{position:absolute;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,rgba(100,180,255,.7),rgba(30,80,200,.6));box-shadow:0 0 12px rgba(80,160,255,.5);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;transition:top .06s,left .06s;}
 
+/* BUTTONS */
 #btn-fire{position:absolute;bottom:30px;right:20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#ff5555,#990000);border:3px solid rgba(255,120,120,.7);box-shadow:0 0 24px rgba(255,40,40,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:all;cursor:pointer;font-size:26px;color:#fff;font-weight:900;transition:transform .07s;}
 #btn-fire:active{transform:scale(.88);}
 #btn-fire-label{font-size:9px;letter-spacing:1px;color:rgba(255,200,200,.8);margin-top:1px;}
@@ -78,11 +91,29 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 
 #pc-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:10px;letter-spacing:1px;pointer-events:none;}
 
-#btn-exit{position:absolute;top:14px;left:130px;width:36px;height:36px;border-radius:8px;background:rgba(120,20,20,.85);border:1.5px solid rgba(255,80,80,.5);display:flex;align-items:center;justify-content:center;font-size:16px;pointer-events:all;cursor:pointer;color:#ff8888;transition:background .15s;}
+/* EXIT BUTTON */
+#btn-exit{
+  position:absolute;top:14px;left:130px;
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(120,20,20,.85);border:1.5px solid rgba(255,80,80,.5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;pointer-events:all;cursor:pointer;color:#ff8888;
+  transition:background .15s;
+}
 #btn-exit:active{background:rgba(200,30,30,.9);}
 
-#gun-switcher{position:absolute;bottom:165px;right:82px;display:flex;flex-direction:column;gap:5px;pointer-events:all;}
-.gslot{width:52px;height:52px;border-radius:10px;background:rgba(0,0,0,.65);border:1.5px solid rgba(255,255,255,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s,background .15s;padding:3px;}
+/* GUN SWITCHER BAR */
+#gun-switcher{
+  position:absolute;bottom:165px;right:82px;
+  display:flex;flex-direction:column;gap:5px;pointer-events:all;
+}
+.gslot{
+  width:52px;height:52px;border-radius:10px;
+  background:rgba(0,0,0,.65);border:1.5px solid rgba(255,255,255,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .15s,background .15s;
+  padding:3px;
+}
 .gslot.active{border-color:#ffcc00;background:rgba(255,200,0,.18);}
 .gslot:active{transform:scale(.92);}
 .gslot-icon{font-size:16px;line-height:1;}
@@ -90,27 +121,55 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 .gslot-dmg{font-size:6px;color:#aaa;}
 .gslot-key{font-size:6px;color:rgba(255,200,0,.7);margin-top:1px;}
 
-#btn-scope{position:absolute;bottom:350px;right:20px;width:52px;height:52px;border-radius:50%;background:rgba(10,40,60,.88);border:2px solid #22aaff;box-shadow:0 0 12px rgba(30,150,255,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:all;cursor:pointer;font-size:20px;color:#fff;}
+/* SCOPE BUTTON */
+#btn-scope{
+  position:absolute;bottom:350px;right:20px;
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(10,40,60,.88);border:2px solid #22aaff;
+  box-shadow:0 0 12px rgba(30,150,255,.35);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  pointer-events:all;cursor:pointer;font-size:20px;color:#fff;
+}
 #btn-scope.scoped{background:rgba(0,60,30,.9);border-color:#44ff88;box-shadow:0 0 16px rgba(50,220,100,.5);}
 #btn-scope-label{font-size:8px;color:rgba(180,220,255,.8);letter-spacing:1px;margin-top:1px;}
 
-#scope-overlay{position:absolute;inset:0;pointer-events:none;display:none;}
+/* SCOPE OVERLAY */
+#scope-overlay{
+  position:absolute;inset:0;pointer-events:none;display:none;
+}
 #scope-overlay canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
-.scope-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:220px;height:220px;border-radius:50%;border:2px solid rgba(0,0,0,.9);box-shadow:0 0 0 9999px rgba(0,0,0,.88);pointer-events:none;}
+.scope-circle{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:220px;height:220px;border-radius:50%;
+  border:2px solid rgba(0,0,0,.9);
+  box-shadow:0 0 0 9999px rgba(0,0,0,.88);
+  pointer-events:none;
+}
 .scope-line-h{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);}
 .scope-line-v{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.7);transform:translateX(-50%);}
 .scope-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:rgba(255,80,80,.9);}
 .scope-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;border:1px solid rgba(255,255,255,.5);}
 #scope-label{position:absolute;bottom:55%;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:10px;letter-spacing:2px;}
 
+/* GUN SWITCH KEY HINT */
 #switch-hint{position:absolute;bottom:340px;right:82px;color:rgba(255,255,255,.22);font-size:8px;letter-spacing:1px;pointer-events:none;}
 
+/* ══════════════════════════════════════
+   SCREENS
+══════════════════════════════════════ */
+
+/* MAIN START SCREEN */
 #startscreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:all;z-index:100;background:linear-gradient(180deg,#050510 0%,#0a1a0a 100%);}
 #gtitle{font-size:52px;font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,#ff8800,#ffee00,#ff4400);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
 #gsub{color:#556;font-size:12px;letter-spacing:7px;margin-bottom:50px;}
 
 .mode-btn-row{display:flex;gap:20px;margin-bottom:20px;}
-.mode-btn{padding:18px 32px;border-radius:14px;border:none;cursor:pointer;font-size:17px;font-weight:900;letter-spacing:2px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:150px;transition:transform .15s,box-shadow .15s;}
+.mode-btn{
+  padding:18px 32px;border-radius:14px;border:none;cursor:pointer;
+  font-size:17px;font-weight:900;letter-spacing:2px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  min-width:150px;transition:transform .15s,box-shadow .15s;
+}
 .mode-btn:active{transform:scale(.95);}
 #btn-single{background:linear-gradient(135deg,#ff6600,#cc2200);color:#fff;box-shadow:0 0 24px rgba(255,80,0,.4);}
 #btn-single:hover{box-shadow:0 0 36px rgba(255,80,0,.65);transform:translateY(-2px);}
@@ -119,54 +178,44 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 .mode-icon{font-size:28px;}
 .mode-sub{font-size:10px;letter-spacing:1px;opacity:.7;font-weight:400;}
 
-/* ── MULTIPLAYER SCREEN ── */
-#mpscreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:20px;overflow-y:auto;pointer-events:all;z-index:100;background:linear-gradient(180deg,#020818 0%,#050d1a 100%);}
-#mpscreen .mp-title{font-size:28px;font-weight:900;letter-spacing:4px;color:#44aaff;margin-bottom:4px;}
-#mpscreen .mp-sub{color:#446;font-size:11px;letter-spacing:4px;margin-bottom:18px;}
+/* MULTIPLAYER LOBBY SCREEN */
+#mpscreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:all;z-index:100;background:linear-gradient(180deg,#020818 0%,#050d1a 100%);}
+#mpscreen .mp-title{font-size:32px;font-weight:900;letter-spacing:4px;color:#44aaff;margin-bottom:6px;}
+#mpscreen .mp-sub{color:#446;font-size:12px;letter-spacing:4px;margin-bottom:36px;}
 
-.mp-tabs{display:flex;gap:0;margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid rgba(60,120,255,.3);}
-.mp-tab{padding:10px 22px;background:rgba(10,20,50,.8);color:#446;font-size:12px;font-weight:bold;letter-spacing:2px;cursor:pointer;border:none;transition:background .15s,color .15s;}
-.mp-tab.active{background:rgba(0,80,200,.7);color:#aaddff;}
+.mp-card{background:rgba(10,20,50,.85);border:1px solid rgba(60,120,255,.35);border-radius:16px;padding:24px 28px;width:320px;margin-bottom:16px;}
+.mp-card-title{color:#aaddff;font-size:13px;letter-spacing:3px;font-weight:bold;margin-bottom:14px;text-align:center;}
+.mp-card p{color:#667;font-size:11px;margin-bottom:10px;text-align:center;}
 
-.mp-panels{width:320px;}
-.mp-panel{display:none;}
-.mp-panel.active{display:block;}
-
-.mp-card{background:rgba(10,20,50,.85);border:1px solid rgba(60,120,255,.35);border-radius:16px;padding:20px 24px;margin-bottom:14px;}
-.mp-card-title{color:#aaddff;font-size:13px;letter-spacing:3px;font-weight:bold;margin-bottom:12px;text-align:center;}
-.mp-card p{color:#667;font-size:11px;margin-bottom:8px;text-align:center;}
-
-#room-code-box{background:rgba(0,0,0,.5);border:1px dashed rgba(80,160,255,.5);border-radius:8px;padding:10px 14px;font-size:22px;font-weight:900;color:#55ddff;letter-spacing:6px;text-align:center;margin:10px 0;font-family:monospace;cursor:pointer;}
+/* room code display */
+#room-code-box{
+  background:rgba(0,0,0,.5);border:1px dashed rgba(80,160,255,.5);
+  border-radius:8px;padding:10px 14px;font-size:22px;font-weight:900;
+  color:#55ddff;letter-spacing:6px;text-align:center;margin:10px 0;
+  font-family:monospace;cursor:pointer;
+}
 #copy-hint{color:#445;font-size:10px;text-align:center;margin-bottom:12px;}
 
-#join-input{width:100%;padding:10px 14px;border-radius:8px;background:rgba(0,0,0,.5);border:1px solid rgba(80,160,255,.4);color:#aaddff;font-size:18px;letter-spacing:4px;text-align:center;font-family:monospace;outline:none;margin-bottom:12px;}
+/* join input */
+#join-input{
+  width:100%;padding:10px 14px;border-radius:8px;
+  background:rgba(0,0,0,.5);border:1px solid rgba(80,160,255,.4);
+  color:#aaddff;font-size:18px;letter-spacing:4px;text-align:center;
+  font-family:monospace;outline:none;margin-bottom:12px;
+}
 #join-input::placeholder{color:#334;font-size:13px;letter-spacing:2px;}
 
-.mp-btn{width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;font-size:15px;font-weight:bold;letter-spacing:2px;margin-bottom:6px;}
+.mp-btn{
+  width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;
+  font-size:15px;font-weight:bold;letter-spacing:2px;margin-bottom:6px;
+}
 #btn-create-start{background:linear-gradient(135deg,#0066ff,#0033aa);color:#aadeff;}
 #btn-do-join{background:linear-gradient(135deg,#006633,#003311);color:#aaffcc;}
 
 #mp-status{color:#667;font-size:12px;text-align:center;margin-top:6px;min-height:18px;}
 #mp-players-list{color:#556;font-size:11px;text-align:center;margin-top:4px;}
-#join-status{color:#667;font-size:12px;text-align:center;}
 
-/* ── ACTIVE ROOMS PANEL ── */
-#rooms-refresh-btn{width:100%;padding:10px;border-radius:8px;border:none;cursor:pointer;background:rgba(0,100,150,.6);color:#aaddff;font-size:13px;letter-spacing:2px;margin-bottom:12px;}
-#rooms-refresh-btn:active{background:rgba(0,140,200,.7);}
-#rooms-list{display:flex;flex-direction:column;gap:8px;min-height:60px;}
-.room-item{background:rgba(0,20,50,.7);border:1px solid rgba(50,150,255,.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .15s,background .15s;}
-.room-item:hover{border-color:#44aaff;background:rgba(0,40,100,.6);}
-.room-item-left{}
-.room-code-disp{color:#55ddff;font-size:14px;font-weight:900;letter-spacing:3px;font-family:monospace;}
-.room-host-name{color:#556;font-size:10px;margin-top:2px;}
-.room-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
-.room-players{color:#aaffcc;font-size:11px;font-weight:bold;}
-.room-join-btn{background:linear-gradient(135deg,#006633,#003311);color:#aaffcc;border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;letter-spacing:1px;}
-.room-join-btn:active{transform:scale(.94);}
-#rooms-status{color:#445;font-size:11px;text-align:center;margin-top:6px;}
-#rooms-empty{color:#334;font-size:12px;text-align:center;padding:20px;display:none;}
-
-.mp-back-btn{background:none;border:1px solid #334;color:#445;padding:8px 22px;border-radius:8px;cursor:pointer;font-size:12px;letter-spacing:2px;margin-top:8px;margin-bottom:20px;}
+.mp-back-btn{background:none;border:1px solid #334;color:#445;padding:8px 22px;border-radius:8px;cursor:pointer;font-size:12px;letter-spacing:2px;margin-top:8px;}
 
 /* END SCREEN */
 #endscreen{position:absolute;inset:0;background:rgba(0,0,0,.88);display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:all;z-index:50;}
@@ -174,17 +223,20 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #end-stats{color:#bbb;font-size:17px;margin-bottom:28px;}
 #restart-btn{padding:13px 42px;background:linear-gradient(135deg,#ff4400,#ff2200);color:#fff;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer;letter-spacing:2px;}
 
+/* LOCK NOTICE */
 #lock-notice{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.78);color:#fff;padding:15px 26px;border-radius:12px;font-size:14px;text-align:center;pointer-events:none;display:none;border:1px solid rgba(255,255,255,.2);}
-#ping-box{position:absolute;bottom:195px;left:16px;color:rgba(100,255,150,.6);font-size:10px;letter-spacing:1px;display:none;}
-#connected-badge{position:absolute;top:14px;left:130px;background:rgba(0,50,120,.7);color:#aaddff;padding:3px 10px;border-radius:12px;font-size:11px;display:none;border:1px solid rgba(50,120,255,.4);}
 
-/* DAMAGE DIRECTION INDICATOR */
-#dmg-dir{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .15s;}
+/* PING INDICATOR */
+#ping-box{position:absolute;bottom:195px;left:16px;color:rgba(100,255,150,.6);font-size:10px;letter-spacing:1px;display:none;}
+
+/* CONNECTED PLAYERS */
+#connected-badge{position:absolute;top:14px;left:130px;background:rgba(0,50,120,.7);color:#aaddff;padding:3px 10px;border-radius:12px;font-size:11px;display:none;border:1px solid rgba(50,120,255,.4);}
 </style>
 </head>
 <body>
 <canvas id="gameCanvas"></canvas>
 
+<!-- HUD -->
 <div id="hud">
   <div id="minimap"><canvas id="mmcv" width="100" height="100"></canvas></div>
   <div id="alive-wrap">&#x1F465; <span id="alive-num">12</span> ALIVE</div>
@@ -215,9 +267,9 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
   <div id="killfeed"></div>
   <div id="zone-warn">&#x26A0; SAFE ZONE SHRINKING!</div>
   <div id="dmg"></div>
-  <div id="dmg-dir"></div>
   <div id="rl-wrap"><div id="rl-bg"><div id="rl-fill"></div></div><div id="rl-txt">RELOADING...</div></div>
 
+  <!-- MOBILE CONTROLS -->
   <div id="joy-left-area"><div id="joy-left-base"></div><div id="joy-left-knob"></div></div>
   <div class="joy-label" id="jl-label">MOVE</div>
   <div id="joy-right-area"><div id="joy-right-base"></div><div id="joy-right-knob"></div></div>
@@ -228,8 +280,10 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
   <div id="btn-jump"><span>&#x2B06;</span><div id="btn-jump-label">JUMP</div></div>
   <div id="btn-crouch"><span>&#x1F9CE;</span><div id="btn-crouch-label">CROUCH</div></div>
 
+  <!-- EXIT BUTTON -->
   <div id="btn-exit" title="Exit to menu">&#x2715;</div>
 
+  <!-- GUN SWITCHER -->
   <div id="gun-switcher">
     <div class="gslot active" id="gslot-0" onclick="switchGun(0)">
       <div class="gslot-icon">&#x1F52B;</div>
@@ -252,8 +306,10 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
   </div>
   <div id="switch-hint">Keys 1/2/3 or Tab to switch gun</div>
 
+  <!-- SCOPE BUTTON -->
   <div id="btn-scope" onclick="toggleScope()"><span>&#x1F52D;</span><div id="btn-scope-label">SCOPE</div></div>
 
+  <!-- SCOPE OVERLAY -->
   <div id="scope-overlay">
     <div class="scope-circle">
       <div class="scope-line-h"></div>
@@ -282,60 +338,52 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
     <button class="mode-btn" id="btn-multi" onclick="showMpLobby()">
       <span class="mode-icon">&#x1F310;</span>
       MULTIPLAYER
-      <span class="mode-sub">Play with Friends</span>
+      <span class="mode-sub">Training with Friends</span>
     </button>
   </div>
 </div>
 
-<!-- ═══ MULTIPLAYER LOBBY ═══ -->
+<!-- ═══ MULTIPLAYER LOBBY SCREEN ═══ -->
 <div id="mpscreen">
   <div class="mp-title">&#x1F310; MULTIPLAYER</div>
   <div class="mp-sub">TRAINING GROUND</div>
 
-  <!-- TABS -->
-  <div class="mp-tabs">
-    <button class="mp-tab active" id="tab-create" onclick="switchMpTab('create')">&#x2795; CREATE</button>
-    <button class="mp-tab" id="tab-join"   onclick="switchMpTab('join')">&#x1F50D; JOIN</button>
-    <button class="mp-tab" id="tab-rooms"  onclick="switchMpTab('rooms')">&#x1F4E1; ROOMS</button>
-  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:700px;">
 
-  <div class="mp-panels">
-    <!-- CREATE PANEL -->
-    <div class="mp-panel active" id="panel-create">
-      <div class="mp-card">
-        <div class="mp-card-title">&#x2795; CREATE ROOM</div>
-        <p>Share this code with your friends</p>
-        <div id="room-code-box" onclick="copyCode()" title="Click to copy">------</div>
-        <div id="copy-hint">Tap to copy code</div>
-        <button class="mp-btn" id="btn-create-start" onclick="hostStartGame()">&#x25B6; START GAME</button>
-        <div id="mp-status">Generating room...</div>
-        <div id="mp-players-list"></div>
-      </div>
+    <!-- CREATE ROOM -->
+    <div class="mp-card" style="min-width:240px;flex:1;">
+      <div class="mp-card-title">&#x2795; CREATE ROOM</div>
+      <p>Share this code with friends</p>
+      <div id="room-code-box" onclick="copyCode()" title="Click to copy">------</div>
+      <div id="copy-hint">Tap to copy code</div>
+      <div id="mp-status">Generating room...</div>
+      <div id="mp-players-list"></div>
+      <button class="mp-btn" id="btn-create-start" onclick="hostStartGame()" style="margin-top:10px;">&#x25B6; START TRAINING</button>
     </div>
 
-    <!-- JOIN PANEL -->
-    <div class="mp-panel" id="panel-join">
-      <div class="mp-card">
-        <div class="mp-card-title">&#x1F50D; JOIN ROOM</div>
-        <p>Enter room code from your friend</p>
-        <input id="join-input" type="text" maxlength="20" placeholder="ENTER CODE" oninput="this.value=this.value.toUpperCase().replace(/\s/g,'')"/>
-        <button class="mp-btn" id="btn-do-join" onclick="joinRoom()">&#x1F91D; JOIN</button>
-        <div id="join-status"></div>
-      </div>
+    <!-- JOIN ROOM -->
+    <div class="mp-card" style="min-width:240px;flex:1;">
+      <div class="mp-card-title">&#x1F50D; JOIN ROOM</div>
+      <p>Enter room code from your friend</p>
+      <input id="join-input" type="text" maxlength="20" placeholder="ENTER CODE HERE"
+        oninput="this.value=this.value.toUpperCase().replace(/\s/g,'')"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();event.stopPropagation();window.joinRoom();}"/>
+      <button class="mp-btn" id="btn-do-join" onclick="window.joinRoom()" style="background:linear-gradient(135deg,#006633,#003311);color:#aaffcc;margin-top:4px;">
+        &#x1F91D; JOIN GAME
+      </button>
+      <div id="join-status" style="color:#667;font-size:12px;text-align:center;margin-top:6px;"></div>
     </div>
 
-    <!-- ACTIVE ROOMS PANEL -->
-    <div class="mp-panel" id="panel-rooms">
-      <div class="mp-card">
-        <div class="mp-card-title">&#x1F4E1; ACTIVE ROOMS</div>
-        <p>Find rooms that other players made</p>
-        <button id="rooms-refresh-btn" onclick="refreshRooms()">&#x21BA; REFRESH ROOMS</button>
-        <div id="rooms-list">
-          <div id="rooms-empty">No active rooms found.<br>Create a room or ask a friend for their code!</div>
-        </div>
-        <div id="rooms-status"></div>
+    <!-- ACTIVE ROOMS -->
+    <div class="mp-card" style="min-width:240px;flex:1;">
+      <div class="mp-card-title" style="display:flex;justify-content:space-between;align-items:center;">
+        <span>&#x1F30D; ACTIVE ROOMS</span>
+        <button onclick="refreshRoomList()" style="background:rgba(0,100,200,.4);border:1px solid #336;color:#adf;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:10px;">&#x21BB; REFRESH</button>
       </div>
+      <div id="room-list-status" style="color:#445;font-size:11px;text-align:center;margin:4px 0;">Loading...</div>
+      <div id="active-rooms-list" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto;"></div>
     </div>
+
   </div>
 
   <button class="mp-back-btn" onclick="backToMain()">&#x2190; BACK</button>
@@ -350,7 +398,7 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// Dynamically load PeerJS
+// Dynamically load PeerJS with fallback CDNs
 (function loadPeer() {
   const urls = [
     'https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js',
@@ -359,7 +407,11 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
   ];
   let idx = 0;
   function tryNext() {
-    if(idx >= urls.length){ window._peerJSFailed = true; return; }
+    if(idx >= urls.length) {
+      console.warn('PeerJS failed to load — multiplayer disabled');
+      window._peerJSFailed = true;
+      return;
+    }
     const s = document.createElement('script');
     s.src = urls[idx++];
     s.onload = () => { window._peerJSLoaded = true; };
@@ -371,15 +423,15 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 </script>
 <script>
 // ================================================================
-//  FREEZONE FPS — Single + Multiplayer with Active Rooms & Damage Fix
+//  FREEZONE FPS — Single Player + P2P Multiplayer Training Mode
 // ================================================================
 
 // ── GAME STATE ──
 let scene, camera, renderer, clock;
 let gameStarted = false, gameOver = false;
-let gameMode = null;
+let gameMode = null; // 'single' | 'multi'
 
-const player = { hp:100, shield:70, ammo:30, ammoRes:120, kills:0, alive:true, name: 'Player' + Math.floor(Math.random()*9000+1000) };
+const player = { hp:100, shield:70, ammo:30, ammoRes:120, kills:0, alive:true };
 const keys = {};
 let cameraYaw=0, cameraPitch=0, isPointerLocked=false;
 let moveVec={x:0,y:0}, lookVec={x:0,y:0};
@@ -392,225 +444,53 @@ let bullets=[], eBullets=[], particles=[], enemies=[];
 let obstacles=[];
 let weaponGroup;
 
-// ── MULTIPLAYER STATE ──
-let myPeer = null;
-let myPeerId = null;
-let peerConnections = {};
-let remotePlayers = {};
-let isHost = false;
-let pingStart = {};
-let myRoomCode = null;
-let updateInterval = null;
-
-// ── ROOM DISCOVERY ──
-// We use a well-known "lobby peer" ID pattern to discover rooms.
-// Host registers itself in a shared peer named "FZ-LOBBY-[code]"
-// Others can probe known codes OR we use a relay approach.
-// Since PeerJS has no server-side room listing, we use a simple trick:
-// Host broadcasts room info to a fixed "discovery" peer if available,
-// and we keep a local cache + use known room prefix scanning.
-let roomDiscoveryPeer = null;
-let knownRooms = {}; // code -> {players, hostId, lastSeen}
+// ================================================================
+//  MULTIPLAYER STATE
+// ================================================================
+let myPeer = null, myPeerId = null, myRoomCode = null;
+let peerConnections = {};   // peerId -> DataConnection
+let remotePlayers   = {};   // peerId -> {mesh, hbFill, hp, kills, lastSeen}
+let isHost = false, hostConn = null;
+let updateInterval = null, pingStart = {};
+const PLAYER_COLORS = [0x2255aa,0x228833,0x882222,0x886622,0x553388,0x226688];
+let colorIdx = 0;
 
 // ================================================================
-//  MP TAB SWITCHING
-// ================================================================
-function switchMpTab(tab) {
-  document.querySelectorAll('.mp-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.mp-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-  if(tab === 'rooms') refreshRooms();
-}
-
-// ================================================================
-//  ACTIVE ROOMS — Discovery System
-// ================================================================
-// Strategy: host registers room with a "FZR-[code]" peer ID
-// Joiners try connecting to known codes from localStorage + active scan.
-// We also store recently seen rooms in localStorage for discovery.
-
-const ROOM_STORAGE_KEY = 'fz_active_rooms_v2';
-
-function saveRoomToStorage(code, hostName, playerCount) {
-  try {
-    let rooms = JSON.parse(localStorage.getItem(ROOM_STORAGE_KEY) || '{}');
-    rooms[code] = { code, hostName, playerCount, ts: Date.now() };
-    // Keep only rooms seen in last 10 minutes
-    const now = Date.now();
-    Object.keys(rooms).forEach(k => { if(now - rooms[k].ts > 600000) delete rooms[k]; });
-    localStorage.setItem(ROOM_STORAGE_KEY, JSON.stringify(rooms));
-  } catch(e) {}
-}
-
-function getRoomsFromStorage() {
-  try {
-    let rooms = JSON.parse(localStorage.getItem(ROOM_STORAGE_KEY) || '{}');
-    const now = Date.now();
-    // Remove stale rooms (>10 min)
-    Object.keys(rooms).forEach(k => { if(now - rooms[k].ts > 600000) delete rooms[k]; });
-    return Object.values(rooms);
-  } catch(e) { return []; }
-}
-
-function removeRoomFromStorage(code) {
-  try {
-    let rooms = JSON.parse(localStorage.getItem(ROOM_STORAGE_KEY) || '{}');
-    delete rooms[code];
-    localStorage.setItem(ROOM_STORAGE_KEY, JSON.stringify(rooms));
-  } catch(e) {}
-}
-
-async function refreshRooms() {
-  const listEl = document.getElementById('rooms-list');
-  const statusEl = document.getElementById('rooms-status');
-  const emptyEl = document.getElementById('rooms-empty');
-  document.getElementById('rooms-refresh-btn').textContent = '⏳ Scanning...';
-  statusEl.textContent = 'Checking for active rooms...';
-  listEl.innerHTML = '';
-  emptyEl.style.display = 'none';
-
-  // Get rooms from local storage (cross-tab sharing on same device)
-  const storedRooms = getRoomsFromStorage();
-  
-  // Also probe "known prefix" rooms that might be active via PeerJS
-  // We try connecting briefly to probe if a peer is alive
-  if(storedRooms.length === 0) {
-    document.getElementById('rooms-refresh-btn').textContent = '↺ REFRESH ROOMS';
-    statusEl.textContent = 'Tip: Ask your friend to share their room code!';
-    emptyEl.style.display = 'block';
-    listEl.appendChild(emptyEl);
-    return;
-  }
-
-  // Probe each stored room to see if still alive
-  let foundAny = false;
-  let checked = 0;
-
-  for(const room of storedRooms) {
-    checked++;
-    // Show it immediately, we'll validate async
-    foundAny = true;
-    const item = createRoomItem(room.code, room.hostName || 'Unknown', room.playerCount || 1);
-    listEl.appendChild(item);
-  }
-
-  document.getElementById('rooms-refresh-btn').textContent = '↺ REFRESH ROOMS';
-  if(!foundAny) {
-    statusEl.textContent = 'No rooms found. Create one or enter a code manually!';
-    emptyEl.style.display = 'block';
-    listEl.appendChild(emptyEl);
-  } else {
-    statusEl.textContent = `${storedRooms.length} room(s) found`;
-  }
-}
-
-function createRoomItem(code, hostName, playerCount) {
-  const item = document.createElement('div');
-  item.className = 'room-item';
-  item.innerHTML = `
-    <div class="room-item-left">
-      <div class="room-code-disp">${code}</div>
-      <div class="room-host-name">Host: ${hostName}</div>
-    </div>
-    <div class="room-item-right">
-      <div class="room-players">👥 ${playerCount} player${playerCount !== 1 ? 's' : ''}</div>
-      <button class="room-join-btn" onclick="quickJoinRoom('${code}')">JOIN →</button>
-    </div>
-  `;
-  return item;
-}
-
-function quickJoinRoom(code) {
-  // Switch to join tab and fill the code
-  switchMpTab('join');
-  document.getElementById('join-input').value = code;
-  joinRoom();
-}
-
-// ================================================================
-//  SCREEN NAV
-// ================================================================
-function showMpLobby() {
-  document.getElementById('startscreen').style.display = 'none';
-  document.getElementById('mpscreen').style.display   = 'flex';
-  switchMpTab('create');
-  initPeerWithCode();
-}
-
-function backToMain() {
-  document.getElementById('mpscreen').style.display   = 'none';
-  document.getElementById('startscreen').style.display = 'flex';
-  if(myPeer) { myPeer.destroy(); myPeer=null; }
-}
-
-// ================================================================
-//  PEERJS — create peer with readable room code
+//  PEER INIT — host creates room with custom short code
 // ================================================================
 function initPeerWithCode() {
-  const code = 'FZ' + Math.random().toString(36).slice(2,6).toUpperCase();
   document.getElementById('room-code-box').textContent = '......';
-  document.getElementById('mp-status').textContent = 'Loading multiplayer...';
-
+  document.getElementById('mp-status').textContent = 'Loading...';
   let waited = 0;
-  const waitTimer = setInterval(() => {
+  const t = setInterval(() => {
     waited += 300;
-    if(typeof Peer !== 'undefined') {
-      clearInterval(waitTimer);
-      _createPeerRoom(code);
-    } else if(waited >= 10000) {
-      clearInterval(waitTimer);
-      document.getElementById('room-code-box').textContent = 'OFFLINE';
-      document.getElementById('mp-status').textContent = '⚠ PeerJS failed — check internet';
-    }
+    if(typeof Peer !== 'undefined') { clearInterval(t); _doCreateRoom(); }
+    else if(waited > 10000) { clearInterval(t); document.getElementById('mp-status').textContent = '⚠ PeerJS failed'; }
   }, 300);
 }
 
-function _createPeerRoom(code) {
-  document.getElementById('mp-status').textContent = 'Creating room...';
+function _doCreateRoom() {
+  const code = 'FZ' + Math.random().toString(36).slice(2,6).toUpperCase();
   if(myPeer && !myPeer.destroyed) myPeer.destroy();
+  document.getElementById('mp-status').textContent = 'Creating room...';
 
   myPeer = new Peer(code, {
     host:'0.peerjs.com', port:443, path:'/', secure:true,
-    config:{ iceServers:[
-      { urls:'stun:stun.l.google.com:19302' },
-      { urls:'stun:stun1.l.google.com:19302' }
-    ]}
+    config:{ iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}] }
   });
-
   myPeer.on('open', id => {
-    myPeerId = id;
-    myRoomCode = id;
+    myPeerId = id; myRoomCode = id;
     document.getElementById('room-code-box').textContent = id;
-    document.getElementById('copy-hint').textContent = '👆 Tap code to copy';
+    document.getElementById('copy-hint').textContent = '👆 Tap to copy — share with friends';
     document.getElementById('mp-status').textContent = '✅ Room ready! Waiting for players...';
-    // Save to storage so others can discover it
-    saveRoomToStorage(id, player.name, 1);
+    _storeRoomInLS(id, 1);
+    refreshRoomList();
   });
-
   myPeer.on('error', err => {
-    if(err.type === 'unavailable-id') {
-      _createPeerRoom('FZ' + Math.random().toString(36).slice(2,6).toUpperCase());
-      return;
-    }
+    if(err.type === 'unavailable-id') { _doCreateRoom(); return; }
     document.getElementById('mp-status').textContent = '⚠ ' + err.type;
-    document.getElementById('room-code-box').textContent = 'ERR';
   });
-
-  myPeer.on('connection', conn => {
-    setupConn(conn, true);
-    updateLobbyPlayerCount();
-    // Update room storage with new player count
-    const n = Object.keys(peerConnections).length + 1;
-    saveRoomToStorage(myRoomCode, player.name, n);
-  });
-}
-
-function copyCode() {
-  const code = document.getElementById('room-code-box').textContent;
-  if(navigator.clipboard) navigator.clipboard.writeText(code);
-  document.getElementById('copy-hint').textContent = '✅ Copied!';
-  setTimeout(() => document.getElementById('copy-hint').textContent = '👆 Tap code to copy', 2000);
+  myPeer.on('connection', conn => { setupConn(conn, true); updateLobbyPlayerCount(); });
 }
 
 // ================================================================
@@ -619,307 +499,297 @@ function copyCode() {
 function setupConn(conn, weAreHost) {
   const pid = conn.peer;
   peerConnections[pid] = conn;
-
   conn.on('open', () => {
     if(weAreHost) {
-      conn.send({ type:'welcome', hostId:myPeerId, peers:Object.keys(peerConnections), hostName: player.name });
-      Object.values(peerConnections).forEach(c => {
-        if(c !== conn && c.open) c.send({ type:'peer_joined', peerId:pid });
-      });
+      // Tell joiner about existing peers
+      const peers = Object.keys(peerConnections).filter(p => p !== pid);
+      conn.send({type:'welcome', peers});
+      // Tell others about new peer
+      Object.values(peerConnections).forEach(c => { if(c !== conn && c.open) c.send({type:'peer_joined', peerId:pid}); });
     }
     updateLobbyPlayerCount();
+    if(myRoomCode) _storeRoomInLS(myRoomCode, Object.keys(peerConnections).length + 1);
   });
-
   conn.on('data', data => handlePeerData(data, pid));
   conn.on('close', () => {
     delete peerConnections[pid];
-    removeRemotePlayer(pid);
+    if(gameStarted) removeRemotePlayer(pid);
     updateLobbyPlayerCount();
   });
-  conn.on('error', () => {
-    delete peerConnections[pid];
-    removeRemotePlayer(pid);
-  });
+  conn.on('error', () => { delete peerConnections[pid]; });
 }
 
+// ================================================================
+//  DATA HANDLER
+// ================================================================
 function handlePeerData(data, fromId) {
   switch(data.type) {
     case 'welcome':
-      isHost = false;
-      if(data.peers) {
-        data.peers.forEach(pid => {
-          if(pid !== myPeerId && !peerConnections[pid]) {
-            const c = myPeer.connect(pid, { reliable:true });
-            setupConn(c, false);
-          }
-        });
-      }
+      if(data.peers) data.peers.forEach(pid => {
+        if(pid !== myPeerId && !peerConnections[pid])
+          setupConn(myPeer.connect(pid,{reliable:true,serialization:'json'}), false);
+      });
       break;
-
     case 'peer_joined':
-      if(!peerConnections[data.peerId] && data.peerId !== myPeerId) {
-        const c = myPeer.connect(data.peerId, { reliable:true });
-        setupConn(c, false);
-      }
+      if(!peerConnections[data.peerId] && data.peerId !== myPeerId)
+        setupConn(myPeer.connect(data.peerId,{reliable:true,serialization:'json'}), false);
       break;
-
     case 'start_game':
-      if(!gameStarted) {
-        gameMode = 'multi';
-        document.getElementById('mpscreen').style.display = 'none';
-        initGame();
-      }
+      if(!gameStarted) { gameMode='multi'; document.getElementById('mpscreen').style.display='none'; initGame(); }
       break;
-
     case 'pos':
       updateRemotePlayer(fromId, data);
       break;
-
-    // ── DAMAGE FIX: Receive damage from remote player's bullets ──
-    case 'hit_player':
-      // Another player's bullet hit us
-      if(data.targetId === myPeerId && player.alive) {
-        applyDamage(data.dmg);
-      }
+    // Remote player fired — spawn visual bullet (we dont take damage from this, shooter does hitscan)
+    case 'bullet':
+      if(gameStarted && scene) spawnRemoteBulletVisual(data);
       break;
-
-    // ── DAMAGE FIX: Remote player took damage (show their HP update) ──
-    case 'player_hp':
-      if(remotePlayers[fromId]) {
-        remotePlayers[fromId].hp = data.hp;
-        const r = Math.max(0, data.hp / 100);
-        remotePlayers[fromId].hbFill.scale.x = r;
-        remotePlayers[fromId].hbFill.position.x = -(1-r) * .39;
-        if(data.hp <= 0) {
-          addKillFeed(fromId.slice(-4) + ' eliminated');
+    // Shooter's hitscan confirmed WE got hit
+    case 'hit':
+      if(player.alive) {
+        player.hp -= (data.dmg || 20);
+        player.shield = Math.max(0, player.shield - 4);
+        flashDmg();
+        if(player.hp <= 0) {
+          killPlayer();
+          if(peerConnections[fromId] && peerConnections[fromId].open)
+            peerConnections[fromId].send({type:'kill_confirm'});
         }
+        updateHUD();
       }
       break;
-
+    case 'kill_confirm':
+      player.kills++;
+      addKillFeed('Enemy Player');
+      playSound('kill');
+      updateHUD();
+      break;
     case 'ping':
       if(peerConnections[fromId] && peerConnections[fromId].open)
-        peerConnections[fromId].send({ type:'pong', id:data.id });
+        peerConnections[fromId].send({type:'pong', id:data.id});
       break;
-
     case 'pong':
       if(pingStart[data.id]) {
-        const ms = Date.now() - pingStart[data.id];
+        const el = document.getElementById('ping-val');
+        if(el) el.textContent = Date.now() - pingStart[data.id];
         delete pingStart[data.id];
-        document.getElementById('ping-val').textContent = ms;
       }
       break;
-
-    case 'shoot':
-      spawnRemoteBullet(fromId, data);
-      break;
-
-    case 'kill_feed':
-      addKillFeed(data.msg);
-      break;
   }
-}
-
-// Apply damage to local player
-function applyDamage(dmg) {
-  if(!player.alive) return;
-  player.hp -= dmg;
-  flashDmg();
-  playSound('damage');
-  updateHUD();
-  // Broadcast our new HP to others
-  broadcastHP();
-  if(player.hp <= 0) {
-    player.alive = false;
-    gameOver = true;
-    showEnd(false);
-  }
-}
-
-// Broadcast our current HP
-function broadcastHP() {
-  const data = { type:'player_hp', hp: player.hp };
-  Object.values(peerConnections).forEach(c => { if(c.open) c.send(data); });
 }
 
 function updateLobbyPlayerCount() {
   const n = Object.keys(peerConnections).length + 1;
-  document.getElementById('mp-players-list').textContent = '👥 Players: ' + n;
+  const el = document.getElementById('mp-players-list');
+  if(el) el.textContent = '👥 ' + n + ' player' + (n > 1 ? 's' : '') + ' in room';
 }
 
 // ================================================================
-//  HOST START GAME
+//  HOST START / BACK
 // ================================================================
 function hostStartGame() {
   isHost = true;
-  Object.values(peerConnections).forEach(c => {
-    if(c.open) c.send({ type:'start_game' });
-  });
+  Object.values(peerConnections).forEach(c => { if(c.open) c.send({type:'start_game'}); });
   gameMode = 'multi';
   document.getElementById('mpscreen').style.display = 'none';
   initGame();
 }
 
-// ================================================================
-//  SINGLE PLAYER START
-// ================================================================
-function startSingle() {
-  gameMode = 'single';
-  document.getElementById('startscreen').style.display = 'none';
-  initGame();
+function backToMain() {
+  document.getElementById('mpscreen').style.display = 'none';
+  document.getElementById('startscreen').style.display = 'flex';
+  if(myPeer && !myPeer.destroyed) { myPeer.destroy(); myPeer = null; }
+}
+
+function copyCode() {
+  const code = document.getElementById('room-code-box').textContent;
+  if(navigator.clipboard) navigator.clipboard.writeText(code);
+  document.getElementById('copy-hint').textContent = '✅ Copied!';
+  setTimeout(() => document.getElementById('copy-hint').textContent = '👆 Tap to copy', 2000);
 }
 
 // ================================================================
-//  GAME INIT
-// ================================================================
-function initGame() {
-  currentGunIdx=0; currentGun=GUNS[0];
-  gunAmmo=[30,5,8]; gunAmmoRes=[120,25,40];
-  player.ammo=gunAmmo[0]; player.ammoRes=gunAmmoRes[0];
-  player.hp=100; player.shield=70; player.kills=0; player.alive=true;
-  document.querySelectorAll('.gslot').forEach((el,i)=>el.classList.toggle('active',i===0));
-  isScoped=false;
-  initThree();
-  camera.fov=normalFOV; camera.updateProjectionMatrix();
-  buildMap();
-  buildWeapon();
-  if(gameMode === 'single') {
-    spawnEnemies();
-    setTimeout(()=>{
-      zoneShrinking=true;
-      document.getElementById('zone-warn').style.display='block';
-      setTimeout(()=>document.getElementById('zone-warn').style.display='none',5000);
-    },25000);
-    setTimeout(()=>playSound('zone_warn'),25000);
-  } else {
-    document.getElementById('mp-tag').style.display='block';
-    document.getElementById('connected-badge').style.display='block';
-    document.getElementById('ping-box').style.display='block';
-    document.getElementById('alive-wrap').style.display='none';
-    updateInterval = setInterval(broadcastMyPosition, 50);
-    setInterval(sendPing, 2000);
-    // Remove our room from discovery listing when game starts
-    if(isHost && myRoomCode) removeRoomFromStorage(myRoomCode);
-  }
-  setupControls();
-  gameStarted = true;
-  animate();
-  updateHUD();
-}
-
-// ================================================================
-//  BROADCAST
+//  POSITION BROADCAST + PING
 // ================================================================
 function broadcastMyPosition() {
   if(!gameStarted) return;
-  const data = {
-    type:'pos',
-    x:camera.position.x, y:camera.position.y, z:camera.position.z,
-    yaw:cameraYaw, pitch:cameraPitch,
-    hp:player.hp, kills:player.kills, shooting:shooting,
-    name: player.name
-  };
-  Object.values(peerConnections).forEach(c => { if(c.open) c.send(data); });
+  const d = {type:'pos', x:camera.position.x, y:camera.position.y, z:camera.position.z,
+             yaw:cameraYaw, pitch:cameraPitch, hp:player.hp, kills:player.kills};
+  Object.values(peerConnections).forEach(c => { if(c.open) c.send(d); });
 }
 
 function sendPing() {
   const id = Date.now();
   Object.values(peerConnections).forEach(c => {
-    if(c.open) { pingStart[id]=Date.now(); c.send({type:'ping',id}); }
+    if(c.open) { pingStart[id] = Date.now(); c.send({type:'ping', id}); }
   });
 }
 
 // ================================================================
-//  REMOTE PLAYER MANAGEMENT
+//  REMOTE PLAYER MESH + UPDATE
 // ================================================================
-const PLAYER_COLORS = [0x2255aa, 0x228833, 0x882222, 0x886622, 0x553388];
-let colorIdx = 0;
-
 function makeRemotePlayerMesh(color) {
   const g = new THREE.Group();
-  const ml = new THREE.MeshLambertMaterial({color});
-  const sk = new THREE.MeshLambertMaterial({color:0xC8A882});
-  const hm = new THREE.MeshLambertMaterial({color:0x223344});
-  const tr = new THREE.MeshLambertMaterial({color:0x334422});
-
-  const body = new THREE.Mesh(new THREE.BoxGeometry(.6,.9,.35), ml);
-  body.position.y=1.05; body.castShadow=true; g.add(body);
-  const head = new THREE.Mesh(new THREE.BoxGeometry(.4,.4,.4), sk);
-  head.position.y=1.7; g.add(head);
-  const helm = new THREE.Mesh(new THREE.BoxGeometry(.44,.22,.44), hm);
-  helm.position.y=1.88; g.add(helm);
+  const ml=new THREE.MeshLambertMaterial({color});
+  const sk=new THREE.MeshLambertMaterial({color:0xC8A882});
+  const hm=new THREE.MeshLambertMaterial({color:0x223344});
+  const tr=new THREE.MeshLambertMaterial({color:0x334422});
+  const body=new THREE.Mesh(new THREE.BoxGeometry(.6,.9,.35),ml); body.position.y=1.05; body.castShadow=true; g.add(body);
+  const head=new THREE.Mesh(new THREE.BoxGeometry(.4,.4,.4),sk); head.position.y=1.7; g.add(head);
+  const helm=new THREE.Mesh(new THREE.BoxGeometry(.44,.22,.44),hm); helm.position.y=1.88; g.add(helm);
   [-.15,.15].forEach(ox=>{const l=new THREE.Mesh(new THREE.BoxGeometry(.22,.7,.3),tr);l.position.set(ox,.45,0);g.add(l);});
   [-.42,.42].forEach(ox=>{const a=new THREE.Mesh(new THREE.BoxGeometry(.2,.65,.25),ml);a.position.set(ox,1.1,0);g.add(a);});
-  const gun=new THREE.Mesh(new THREE.BoxGeometry(.06,.08,.45),new THREE.MeshLambertMaterial({color:0x111111}));
-  gun.position.set(.55,1.1,-.2); g.add(gun);
-
-  const hbBg=new THREE.Mesh(new THREE.PlaneGeometry(.8,.1),new THREE.MeshBasicMaterial({color:0x002200,side:THREE.DoubleSide}));
-  hbBg.position.y=2.35; g.add(hbBg);
-  const hbFill=new THREE.Mesh(new THREE.PlaneGeometry(.78,.08),new THREE.MeshBasicMaterial({color:0x00aaff,side:THREE.DoubleSide}));
-  hbFill.position.set(0,2.35,.01); g.add(hbFill);
-
-  const nameMarker=new THREE.Mesh(new THREE.BoxGeometry(.15,.15,.15),new THREE.MeshBasicMaterial({color:0x00aaff}));
-  nameMarker.position.y=2.55; g.add(nameMarker);
-
-  return { group:g, hbFill };
+  const egun=new THREE.Mesh(new THREE.BoxGeometry(.06,.08,.45),new THREE.MeshLambertMaterial({color:0x111111})); egun.position.set(.55,1.1,-.2); g.add(egun);
+  const hbBg=new THREE.Mesh(new THREE.PlaneGeometry(.8,.1),new THREE.MeshBasicMaterial({color:0x001133,side:THREE.DoubleSide})); hbBg.position.y=2.35; g.add(hbBg);
+  const hbFill=new THREE.Mesh(new THREE.PlaneGeometry(.78,.08),new THREE.MeshBasicMaterial({color:0x00aaff,side:THREE.DoubleSide})); hbFill.position.set(0,2.35,.01); g.add(hbFill);
+  const nm=new THREE.Mesh(new THREE.BoxGeometry(.15,.15,.15),new THREE.MeshBasicMaterial({color:0x00aaff})); nm.position.y=2.6; g.add(nm);
+  return {group:g, hbFill};
 }
 
 function updateRemotePlayer(pid, data) {
-  if(!gameStarted||!scene) return;
+  if(!gameStarted || !scene) return;
   if(!remotePlayers[pid]) {
-    const color = PLAYER_COLORS[colorIdx++ % PLAYER_COLORS.length];
-    const { group, hbFill } = makeRemotePlayerMesh(color);
+    const {group, hbFill} = makeRemotePlayerMesh(PLAYER_COLORS[colorIdx++ % PLAYER_COLORS.length]);
     scene.add(group);
-    remotePlayers[pid] = { mesh:group, hbFill, hp:100, kills:0, lastSeen:Date.now() };
-    document.getElementById('conn-count').textContent = Object.keys(remotePlayers).length + 1;
+    remotePlayers[pid] = {mesh:group, hbFill, hp:100, kills:0};
+    const cc = document.getElementById('conn-count'); if(cc) cc.textContent = Object.keys(remotePlayers).length + 1;
   }
   const rp = remotePlayers[pid];
   rp.mesh.position.set(data.x, 0, data.z);
   rp.mesh.rotation.y = data.yaw + Math.PI;
-  rp.hp = data.hp;
-  rp.kills = data.kills;
-  rp.lastSeen = Date.now();
-
-  const r = Math.max(0, data.hp/100);
-  rp.hbFill.scale.x = r;
-  rp.hbFill.position.x = -(1-r)*.39;
-
-  rp.mesh.children.forEach(c => {
-    if(c.geometry && c.geometry.type==='PlaneGeometry') c.lookAt(camera.position);
-  });
+  rp.hp = data.hp; rp.kills = data.kills; rp.lastSeen = Date.now();
+  const r = Math.max(0, data.hp / 100); rp.hbFill.scale.x = r; rp.hbFill.position.x = -(1-r)*.39;
 }
 
 function removeRemotePlayer(pid) {
   if(remotePlayers[pid]) {
-    scene.remove(remotePlayers[pid].mesh);
+    if(scene) scene.remove(remotePlayers[pid].mesh);
     delete remotePlayers[pid];
-    document.getElementById('conn-count').textContent = Object.keys(remotePlayers).length + 1;
+    const cc = document.getElementById('conn-count'); if(cc) cc.textContent = Object.keys(remotePlayers).length + 1;
   }
 }
 
-// ── DAMAGE FIX: Remote bullet spawns AND checks collision with local player ──
-function spawnRemoteBullet(pid, data) {
-  if(!gameStarted) return;
+// Visual-only remote bullet (no damage — damage handled by shooter hitscan below)
+function spawnRemoteBulletVisual(data) {
   const pos = new THREE.Vector3(data.ox, data.oy, data.oz);
-  const dir = new THREE.Vector3(data.dx, data.dy, data.dz);
-  // Create bullet with owner info for damage attribution
-  const b = {
-    pos, dir, speed:90, life:.55,
-    damage: data.dmg || 22,
-    ownerId: pid,         // whose bullet this is
-    isRemote: true,       // so we can check against LOCAL player
-    mesh: mkBulletMesh(0x44aaff, .022)
-  };
-  b.mesh.position.copy(pos);
-  scene.add(b.mesh);
-  bullets.push(b);
+  const dir = new THREE.Vector3(data.dx, data.dy, data.dz).normalize();
+  const b = {pos, dir, speed:data.speed||90, life:data.life||.55, visualOnly:true, mesh:mkBulletMesh(0xff4444,.022)};
+  b.mesh.position.copy(pos); scene.add(b.mesh); bullets.push(b);
 }
 
-setInterval(()=>{
-  const now = Date.now();
-  Object.entries(remotePlayers).forEach(([pid,rp])=>{
-    if(rp.lastSeen && now-rp.lastSeen > 5000) removeRemotePlayer(pid);
+// Called after local player shoots in MP — check if any remote player was hit (hitscan)
+function checkPvPHit(shootOrigin, shootDir, damage) {
+  Object.entries(remotePlayers).forEach(([pid, rp]) => {
+    if(!rp.mesh) return;
+    const head  = rp.mesh.position.clone().add(new THREE.Vector3(0, 1.7, 0));
+    const body  = rp.mesh.position.clone().add(new THREE.Vector3(0, 1.0, 0));
+    const toH   = head.clone().sub(shootOrigin);
+    const toB   = body.clone().sub(shootOrigin);
+    const distH = toH.length(), distB = toB.length();
+    const dotH  = shootDir.clone().dot(toH.normalize());
+    const dotB  = shootDir.clone().dot(toB.normalize());
+    const thresh = 0.94;
+    if((dotH >= thresh && distH < 60) || (dotB >= thresh && distB < 60)) {
+      showHitMark();
+      playSound('hit');
+      const hitPos = shootOrigin.clone().add(shootDir.clone().multiplyScalar(Math.min(distH, distB) * 0.9));
+      spawnHitFx(hitPos);
+      if(peerConnections[pid] && peerConnections[pid].open)
+        peerConnections[pid].send({type:'hit', dmg: damage});
+    }
   });
-},3000);
+}
+
+// Cleanup stale remote players
+setInterval(() => {
+  const now = Date.now();
+  Object.entries(remotePlayers).forEach(([pid, rp]) => {
+    if(rp.lastSeen && now - rp.lastSeen > 6000) removeRemotePlayer(pid);
+  });
+}, 3000);
+
+// ================================================================
+//  ACTIVE ROOMS — localStorage (same device tabs) +
+//  BroadcastChannel (cross-tab) for room discovery
+// ================================================================
+const LS_KEY = 'fzroomsv2';
+let _bcChannel = null;
+try { _bcChannel = new BroadcastChannel('fzrooms_bc'); } catch(e) {}
+
+function _storeRoomInLS(code, players) {
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    all[code] = {code, players, ts: Date.now()};
+    localStorage.setItem(LS_KEY, JSON.stringify(all));
+    if(_bcChannel) _bcChannel.postMessage({type:'update', code, players, ts: Date.now()});
+  } catch(e) {}
+}
+
+function refreshRoomList() {
+  const listEl = document.getElementById('active-rooms-list');
+  const stEl   = document.getElementById('room-list-status');
+  if(!listEl || !stEl) return;
+  stEl.textContent = '🔄 Searching...';
+  listEl.innerHTML = '';
+
+  // Load from localStorage
+  let rooms = [];
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    const now = Date.now();
+    // Prune rooms older than 3 minutes
+    let changed = false;
+    Object.keys(all).forEach(k => { if(now - all[k].ts > 180000) { delete all[k]; changed = true; } });
+    if(changed) localStorage.setItem(LS_KEY, JSON.stringify(all));
+    rooms = Object.values(all);
+  } catch(e) {}
+
+  _renderRooms(rooms);
+
+  // Also listen for BC updates for 4 seconds
+  if(_bcChannel) {
+    const h = e => {
+      if(e.data && e.data.type === 'update') {
+        // Merge
+        const found = rooms.findIndex(r => r.code === e.data.code);
+        if(found >= 0) rooms[found] = {code:e.data.code, players:e.data.players, ts:e.data.ts};
+        else rooms.push({code:e.data.code, players:e.data.players, ts:e.data.ts});
+        _renderRooms(rooms);
+      }
+    };
+    _bcChannel.addEventListener('message', h);
+    setTimeout(() => _bcChannel.removeEventListener('message', h), 4000);
+  }
+}
+
+function _renderRooms(rooms) {
+  const listEl = document.getElementById('active-rooms-list');
+  const stEl   = document.getElementById('room-list-status');
+  if(!listEl || !stEl) return;
+  const active = rooms.filter(r => r.players >= 1);
+  if(active.length === 0) {
+    stEl.textContent = 'No rooms found — ask friend to share code';
+    listEl.innerHTML  = '<div style="color:#334;font-size:11px;text-align:center;padding:10px;">Active rooms from other devices won\'t show here.<br>Use the room code your friend shares.</div>';
+    return;
+  }
+  stEl.textContent = active.length + ' room(s) found';
+  listEl.innerHTML = active.map(r => `
+    <div style="background:rgba(0,40,80,.7);border:1px solid rgba(50,120,255,.35);border-radius:8px;
+         padding:8px 12px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="color:#aaddff;font-size:12px;font-weight:bold;font-family:monospace;letter-spacing:2px;">${r.code}</div>
+        <div style="color:#556;font-size:10px;margin-top:2px;">👥 ${r.players} player${r.players>1?'s':''} online</div>
+      </div>
+      <div onclick="quickJoin('${r.code}')"
+           style="background:linear-gradient(135deg,#005522,#002211);color:#aaffcc;padding:5px 14px;
+                  border-radius:6px;font-size:11px;font-weight:bold;border:1px solid #226644;cursor:pointer;">JOIN ▶</div>
+    </div>`).join('');
+}
+
+function quickJoin(code) {
+  document.getElementById('join-input').value = code;
+  window.joinRoom();
+}
 
 // ================================================================
 //  THREE.JS INIT
@@ -935,7 +805,7 @@ function initThree() {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.shadowMap.enabled = true;
   clock = new THREE.Clock();
-  window.addEventListener('resize', ()=>{
+  window.addEventListener('resize', () => {
     camera.aspect = innerWidth/innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(innerWidth, innerHeight);
@@ -954,19 +824,23 @@ function buildMap() {
   scene.add(sun);
   scene.add(new THREE.AmbientLight(0x8899cc, .6));
 
+  // Ground
   const gr = new THREE.Mesh(new THREE.PlaneGeometry(400,400), new THREE.MeshLambertMaterial({color:0x5a8a3a}));
   gr.rotation.x=-Math.PI/2; gr.receiveShadow=true; scene.add(gr);
 
+  // Roads
   mkBox(0,.01,0,10,.04,200,0x888877);
   mkBox(0,.01,0,200,.04,10,0x888877);
 
+  // Buildings
   [[20,20,7,9,7],[25,30,8,12,6],[-40,-20,6,8,9],[-35,-40,9,10,8],
    [15,-50,7,7,7],[-50,10,8,14,8],[60,30,10,8,7],[-20,60,6,9,6],
    [35,55,8,10,8],[-60,-30,7,8,9],[50,-60,9,7,7],[25,-30,6,11,6],
    [-40,50,8,8,7],[70,-10,7,9,8],[-70,20,9,10,7],[-15,-25,6,7,6],
    [45,15,7,6,7],[-30,15,5,8,5],[10,40,6,9,6],[-55,45,7,7,7]
-  ].forEach(([bx,bz,bw,bh,bd])=>mkBuilding(bx,bz,bw,bh,bd));
+  ].forEach(([bx,bz,bw,bh,bd]) => mkBuilding(bx,bz,bw,bh,bd));
 
+  // Trees
   for(let i=0;i<60;i++){
     const tx=(Math.random()-.5)*170, tz=(Math.random()-.5)*170;
     if(Math.abs(tx)<6&&Math.abs(tz)<6) continue;
@@ -994,18 +868,20 @@ function buildMap() {
     obstacles.push({x:fx,z:fz,hw:1.3,hd:.45});
   });
 
+  // Water
   const wm = new THREE.MeshLambertMaterial({color:0x2266aa,transparent:true,opacity:.75});
   const wt = new THREE.Mesh(new THREE.PlaneGeometry(35,25),wm);
   wt.rotation.x=-Math.PI/2; wt.position.set(-62,.12,-60); scene.add(wt);
 
-  if(gameMode==='single') {
-    const zGeo=new THREE.RingGeometry(zoneRadius,160,128);
-    const zMat=new THREE.MeshBasicMaterial({color:0x1155ff,transparent:true,opacity:.28,side:THREE.DoubleSide,depthWrite:false});
-    window.zoneFill=new THREE.Mesh(zGeo,zMat);
+  // Zone (Single Player only shows, MP has no zone)
+  if(gameMode === 'single') {
+    const zGeo = new THREE.RingGeometry(zoneRadius,160,128);
+    const zMat = new THREE.MeshBasicMaterial({color:0x1155ff,transparent:true,opacity:.28,side:THREE.DoubleSide,depthWrite:false});
+    window.zoneFill = new THREE.Mesh(zGeo,zMat);
     window.zoneFill.rotation.x=-Math.PI/2; window.zoneFill.position.y=.22; scene.add(window.zoneFill);
-    const zeGeo=new THREE.RingGeometry(zoneRadius-.4,zoneRadius+.4,128);
-    const zeMat=new THREE.MeshBasicMaterial({color:0x44aaff,transparent:true,opacity:.9,side:THREE.DoubleSide,depthWrite:false});
-    window.zoneEdge=new THREE.Mesh(zeGeo,zeMat);
+    const zeGeo = new THREE.RingGeometry(zoneRadius-.4,zoneRadius+.4,128);
+    const zeMat = new THREE.MeshBasicMaterial({color:0x44aaff,transparent:true,opacity:.9,side:THREE.DoubleSide,depthWrite:false});
+    window.zoneEdge = new THREE.Mesh(zeGeo,zeMat);
     window.zoneEdge.rotation.x=-Math.PI/2; window.zoneEdge.position.y=.28; scene.add(window.zoneEdge);
   }
 }
@@ -1013,11 +889,12 @@ function buildMap() {
 function mkBuilding(bx,bz,bw,bh,bd){
   const cols=[0x8B7355,0xB0A090,0x9B8B7B,0x7A6A5A,0xCCBBAA];
   mkBox(bx,bh/2,bz,bw,bh,bd,cols[Math.floor(Math.random()*cols.length)],true);
-  for(let wy=1.5;wy<bh-.5;wy+=2.2)
+  for(let wy=1.5;wy<bh-.5;wy+=2.2){
     for(let wx=-bw/2+1;wx<bw/2;wx+=2){
       mkBox(bx+wx,wy,bz+bd/2+.06,.8,.9,.1,0x4488aa);
       mkBox(bx+wx,wy,bz-bd/2-.06,.8,.9,.1,0x4488aa);
     }
+  }
   mkBox(bx,bh+.3,bz,bw+.2,.6,bd+.2,0x665544,true);
   obstacles.push({x:bx,z:bz,hw:bw/2+.25,hd:bd/2+.25});
 }
@@ -1038,94 +915,272 @@ function mkCone(x,y,z,r,h,col){
 //  COLLISION
 // ================================================================
 function hasCollision(nx,nz){
-  for(const o of obstacles)
+  for(const o of obstacles){
     if(Math.abs(nx-o.x)<o.hw+.5 && Math.abs(nz-o.z)<o.hd+.5) return true;
+  }
   return false;
 }
 
 // ================================================================
-//  SOUND
+//  SOUND SYSTEM (Web Audio API — no files needed)
 // ================================================================
 let audioCtx = null;
-function getAudioCtx(){
-  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  if(audioCtx.state==='suspended') audioCtx.resume();
+
+function getAudioCtx() {
+  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
   return audioCtx;
 }
-function playSound(type){
-  try{
-    const ctx=getAudioCtx(), now=ctx.currentTime;
-    switch(type){
-      case 'shoot_ar':{
-        const buf=ctx.createBuffer(1,ctx.sampleRate*.15,ctx.sampleRate);
-        const d=buf.getChannelData(0);
-        for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*60)*(t<.005?t/.005:1);}
-        const src=ctx.createBufferSource();src.buffer=buf;
-        const g=ctx.createGain();g.gain.setValueAtTime(.55,now);g.gain.exponentialRampToValueAtTime(.001,now+.15);
+
+function playSound(type) {
+  try {
+    const ctx = getAudioCtx();
+    const now = ctx.currentTime;
+
+    switch(type) {
+
+      case 'shoot_ar': { // M4A1 — short sharp crack
+        const buf = ctx.createBuffer(1, ctx.sampleRate * 0.15, ctx.sampleRate);
+        const d = buf.getChannelData(0);
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*60)*(t<0.005?t/0.005:1);
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.55,now); g.gain.exponentialRampToValueAtTime(.001,now+.15);
         const dist=ctx.createWaveShaper();
         const curve=new Float32Array(256);
-        for(let i=0;i<256;i++){const x=i*2/256-1;curve[i]=x<0?-Math.pow(-x,.6):Math.pow(x,.6);}
+        for(let i=0;i<256;i++){ const x=i*2/256-1; curve[i]=x<0?-Math.pow(-x,.6):Math.pow(x,.6); }
         dist.curve=curve;
-        src.connect(dist);dist.connect(g);g.connect(ctx.destination);src.start(now);
-        const osc=ctx.createOscillator();const gk=ctx.createGain();
-        osc.frequency.setValueAtTime(220,now);osc.frequency.exponentialRampToValueAtTime(80,now+.05);
-        gk.gain.setValueAtTime(.3,now);gk.gain.exponentialRampToValueAtTime(.001,now+.06);
-        osc.connect(gk);gk.connect(ctx.destination);osc.start(now);osc.stop(now+.06);
-        break;}
-      case 'shoot_sniper':{
+        src.connect(dist); dist.connect(g); g.connect(ctx.destination); src.start(now);
+        // Mechanical click
+        const osc=ctx.createOscillator(); const gk=ctx.createGain();
+        osc.frequency.setValueAtTime(220,now); osc.frequency.exponentialRampToValueAtTime(80,now+.05);
+        gk.gain.setValueAtTime(.3,now); gk.gain.exponentialRampToValueAtTime(.001,now+.06);
+        osc.connect(gk); gk.connect(ctx.destination); osc.start(now); osc.stop(now+.06);
+        break;
+      }
+
+      case 'shoot_sniper': { // AWM — loud boom
         const buf=ctx.createBuffer(1,ctx.sampleRate*.4,ctx.sampleRate);
         const d=buf.getChannelData(0);
-        for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*18)*(t<.003?t/.003:1);}
-        const src=ctx.createBufferSource();src.buffer=buf;
-        const g=ctx.createGain();g.gain.setValueAtTime(.9,now);g.gain.exponentialRampToValueAtTime(.001,now+.4);
-        const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900;
-        src.connect(lp);lp.connect(g);g.connect(ctx.destination);src.start(now);
-        break;}
-      case 'shoot_shotgun':{
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*18)*(t<.003?t/.003:1);
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.9,now); g.gain.exponentialRampToValueAtTime(.001,now+.4);
+        // Low boom filter
+        const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=900;
+        src.connect(lp); lp.connect(g); g.connect(ctx.destination); src.start(now);
+        break;
+      }
+
+      case 'shoot_shotgun': { // SPAS-12 — big blast
         const buf=ctx.createBuffer(1,ctx.sampleRate*.25,ctx.sampleRate);
         const d=buf.getChannelData(0);
-        for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*30)*(t<.004?t/.004:1);}
-        const src=ctx.createBufferSource();src.buffer=buf;
-        const g=ctx.createGain();g.gain.setValueAtTime(.8,now);g.gain.exponentialRampToValueAtTime(.001,now+.25);
-        const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1200;
-        src.connect(lp);lp.connect(g);g.connect(ctx.destination);src.start(now);
-        break;}
-      case 'reload':
-        [0,.12,.35,.55].forEach((delay,i)=>{
-          const osc=ctx.createOscillator();const g=ctx.createGain();
-          osc.type='square';osc.frequency.setValueAtTime(i%2===0?380:260,now+delay);
-          osc.frequency.exponentialRampToValueAtTime(i%2===0?200:140,now+delay+.06);
-          g.gain.setValueAtTime(.18,now+delay);g.gain.exponentialRampToValueAtTime(.001,now+delay+.07);
-          osc.connect(g);g.connect(ctx.destination);osc.start(now+delay);osc.stop(now+delay+.07);
-        });break;
-      case 'empty':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='square';osc.frequency.value=180;g.gain.setValueAtTime(.12,now);g.gain.exponentialRampToValueAtTime(.001,now+.04);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.04);break;}
-      case 'hit':{const buf=ctx.createBuffer(1,ctx.sampleRate*.08,ctx.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*80);}const src=ctx.createBufferSource();src.buffer=buf;const g=ctx.createGain();g.gain.setValueAtTime(.5,now);const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=500;bp.Q.value=2;src.connect(bp);bp.connect(g);g.connect(ctx.destination);src.start(now);break;}
-      case 'headshot':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(1200,now);osc.frequency.exponentialRampToValueAtTime(400,now+.12);g.gain.setValueAtTime(.4,now);g.gain.exponentialRampToValueAtTime(.001,now+.12);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.12);break;}
-      case 'footstep':{const buf=ctx.createBuffer(1,ctx.sampleRate*.06,ctx.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*120)*.35;}const src=ctx.createBufferSource();src.buffer=buf;const g=ctx.createGain();g.gain.setValueAtTime(.25,now);const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=400;src.connect(lp);lp.connect(g);g.connect(ctx.destination);src.start(now);break;}
-      case 'jump':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(180,now);osc.frequency.exponentialRampToValueAtTime(80,now+.15);g.gain.setValueAtTime(.2,now);g.gain.exponentialRampToValueAtTime(.001,now+.15);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.15);break;}
-      case 'land':{const buf=ctx.createBuffer(1,ctx.sampleRate*.1,ctx.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<d.length;i++){const t=i/ctx.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*50)*.5;}const src=ctx.createBufferSource();src.buffer=buf;const g=ctx.createGain();g.gain.setValueAtTime(.4,now);const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=300;src.connect(lp);lp.connect(g);g.connect(ctx.destination);src.start(now);break;}
-      case 'gun_switch':
-        [0,.07].forEach((delay,i)=>{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='square';osc.frequency.value=i===0?440:330;g.gain.setValueAtTime(.15,now+delay);g.gain.exponentialRampToValueAtTime(.001,now+delay+.05);osc.connect(g);g.connect(ctx.destination);osc.start(now+delay);osc.stop(now+delay+.05);});break;
-      case 'scope_in':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(600,now);osc.frequency.exponentialRampToValueAtTime(900,now+.1);g.gain.setValueAtTime(.12,now);g.gain.exponentialRampToValueAtTime(.001,now+.1);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.1);break;}
-      case 'scope_out':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(900,now);osc.frequency.exponentialRampToValueAtTime(500,now+.1);g.gain.setValueAtTime(.12,now);g.gain.exponentialRampToValueAtTime(.001,now+.1);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.1);break;}
-      case 'damage':{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sawtooth';osc.frequency.setValueAtTime(120,now);osc.frequency.exponentialRampToValueAtTime(60,now+.12);g.gain.setValueAtTime(.25,now);g.gain.exponentialRampToValueAtTime(.001,now+.12);osc.connect(g);g.connect(ctx.destination);osc.start(now);osc.stop(now+.12);break;}
-      case 'kill':
-        [0,.1,.2].forEach((delay,i)=>{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';const freqs=[440,554,659];osc.frequency.value=freqs[i];g.gain.setValueAtTime(.25,now+delay);g.gain.exponentialRampToValueAtTime(.001,now+delay+.12);osc.connect(g);g.connect(ctx.destination);osc.start(now+delay);osc.stop(now+delay+.12);});break;
-      case 'zone_warn':
-        [0,.3,.6].forEach(delay=>{const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(880,now+delay);osc.frequency.exponentialRampToValueAtTime(440,now+delay+.2);g.gain.setValueAtTime(.3,now+delay);g.gain.exponentialRampToValueAtTime(.001,now+delay+.2);osc.connect(g);g.connect(ctx.destination);osc.start(now+delay);osc.stop(now+delay+.2);});break;
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*30)*(t<.004?t/.004:1);
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.8,now); g.gain.exponentialRampToValueAtTime(.001,now+.25);
+        const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1200;
+        src.connect(lp); lp.connect(g); g.connect(ctx.destination); src.start(now);
+        break;
+      }
+
+      case 'reload': { // Click-clack reload sound
+        [0, .12, .35, .55].forEach((delay, i) => {
+          const osc=ctx.createOscillator(); const g=ctx.createGain();
+          osc.type='square';
+          osc.frequency.setValueAtTime(i%2===0?380:260, now+delay);
+          osc.frequency.exponentialRampToValueAtTime(i%2===0?200:140, now+delay+.06);
+          g.gain.setValueAtTime(.18,now+delay); g.gain.exponentialRampToValueAtTime(.001,now+delay+.07);
+          osc.connect(g); g.connect(ctx.destination);
+          osc.start(now+delay); osc.stop(now+delay+.07);
+        });
+        break;
+      }
+
+      case 'empty': { // Dry click — no ammo
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='square'; osc.frequency.value=180;
+        g.gain.setValueAtTime(.12,now); g.gain.exponentialRampToValueAtTime(.001,now+.04);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.04);
+        break;
+      }
+
+      case 'hit': { // Enemy hit — meaty thud
+        const buf=ctx.createBuffer(1,ctx.sampleRate*.08,ctx.sampleRate);
+        const d=buf.getChannelData(0);
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*80);
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.5,now);
+        const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=500; bp.Q.value=2;
+        src.connect(bp); bp.connect(g); g.connect(ctx.destination); src.start(now);
+        break;
+      }
+
+      case 'headshot': { // Headshot ping
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='sine'; osc.frequency.setValueAtTime(1200,now); osc.frequency.exponentialRampToValueAtTime(400,now+.12);
+        g.gain.setValueAtTime(.4,now); g.gain.exponentialRampToValueAtTime(.001,now+.12);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.12);
+        break;
+      }
+
+      case 'footstep': { // Soft footstep
+        const buf=ctx.createBuffer(1,ctx.sampleRate*.06,ctx.sampleRate);
+        const d=buf.getChannelData(0);
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*120)*.35;
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.25,now);
+        const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=400;
+        src.connect(lp); lp.connect(g); g.connect(ctx.destination); src.start(now);
+        break;
+      }
+
+      case 'jump': { // Jump whoosh
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='sine'; osc.frequency.setValueAtTime(180,now); osc.frequency.exponentialRampToValueAtTime(80,now+.15);
+        g.gain.setValueAtTime(.2,now); g.gain.exponentialRampToValueAtTime(.001,now+.15);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.15);
+        break;
+      }
+
+      case 'land': { // Landing thud
+        const buf=ctx.createBuffer(1,ctx.sampleRate*.1,ctx.sampleRate);
+        const d=buf.getChannelData(0);
+        for(let i=0;i<d.length;i++){
+          const t=i/ctx.sampleRate;
+          d[i]=(Math.random()*2-1)*Math.exp(-t*50)*.5;
+        }
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const g=ctx.createGain(); g.gain.setValueAtTime(.4,now);
+        const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=300;
+        src.connect(lp); lp.connect(g); g.connect(ctx.destination); src.start(now);
+        break;
+      }
+
+      case 'gun_switch': { // Weapon swap click
+        [0, .07].forEach((delay,i)=>{
+          const osc=ctx.createOscillator(); const g=ctx.createGain();
+          osc.type='square'; osc.frequency.value=i===0?440:330;
+          g.gain.setValueAtTime(.15,now+delay); g.gain.exponentialRampToValueAtTime(.001,now+delay+.05);
+          osc.connect(g); g.connect(ctx.destination); osc.start(now+delay); osc.stop(now+delay+.05);
+        });
+        break;
+      }
+
+      case 'scope_in': { // Scope zoom in
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='sine'; osc.frequency.setValueAtTime(600,now); osc.frequency.exponentialRampToValueAtTime(900,now+.1);
+        g.gain.setValueAtTime(.12,now); g.gain.exponentialRampToValueAtTime(.001,now+.1);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.1);
+        break;
+      }
+
+      case 'scope_out': { // Scope zoom out
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='sine'; osc.frequency.setValueAtTime(900,now); osc.frequency.exponentialRampToValueAtTime(500,now+.1);
+        g.gain.setValueAtTime(.12,now); g.gain.exponentialRampToValueAtTime(.001,now+.1);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.1);
+        break;
+      }
+
+      case 'damage': { // Player takes damage
+        const osc=ctx.createOscillator(); const g=ctx.createGain();
+        osc.type='sawtooth'; osc.frequency.setValueAtTime(120,now); osc.frequency.exponentialRampToValueAtTime(60,now+.12);
+        g.gain.setValueAtTime(.25,now); g.gain.exponentialRampToValueAtTime(.001,now+.12);
+        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now+.12);
+        break;
+      }
+
+      case 'kill': { // Enemy killed — satisfying sound
+        [0,.1,.2].forEach((delay,i)=>{
+          const osc=ctx.createOscillator(); const g=ctx.createGain();
+          osc.type='sine';
+          const freqs=[440,554,659];
+          osc.frequency.value=freqs[i];
+          g.gain.setValueAtTime(.25,now+delay); g.gain.exponentialRampToValueAtTime(.001,now+delay+.12);
+          osc.connect(g); g.connect(ctx.destination); osc.start(now+delay); osc.stop(now+delay+.12);
+        });
+        break;
+      }
+
+      case 'zone_warn': { // Zone shrink alert
+        [0,.3,.6].forEach(delay=>{
+          const osc=ctx.createOscillator(); const g=ctx.createGain();
+          osc.type='sine'; osc.frequency.setValueAtTime(880,now+delay); osc.frequency.exponentialRampToValueAtTime(440,now+delay+.2);
+          g.gain.setValueAtTime(.3,now+delay); g.gain.exponentialRampToValueAtTime(.001,now+delay+.2);
+          osc.connect(g); g.connect(ctx.destination); osc.start(now+delay); osc.stop(now+delay+.2);
+        });
+        break;
+      }
     }
-  }catch(e){}
+  } catch(e) { /* Silently fail if audio not available */ }
 }
 
+// Footstep timer
 let footstepTimer = 0;
 
 // ================================================================
 //  GUNS CONFIG
 // ================================================================
 const GUNS = [
-  {id:0,name:'M4A1',type:'ar',damage:22,spread:0,ammoMax:30,ammoReserve:120,reloadTime:2.0,fireRate:0.1,bulletSpeed:90,bulletLife:.55,bulletSize:.022,bulletColor:0xffaa00,scopeMult:2.5,scopeLabel:'×2.5',recoil:.045,bodyW:.08,bodyH:.09,bodyD:.45,barrelLen:.35,barrelR:.018,stockD:.2,magH:.12,magD:.06,scopeLen:.14,scopeR:.025,color:{body:0x1a1a1a,stock:0x5C3A1A,mag:0x333333}},
-  {id:1,name:'AWM',type:'sniper',damage:85,spread:0,ammoMax:5,ammoReserve:25,reloadTime:4.0,fireRate:1.2,bulletSpeed:150,bulletLife:.8,bulletSize:.028,bulletColor:0xffffff,scopeMult:6.0,scopeLabel:'×6',recoil:.12,bodyW:.065,bodyH:.08,bodyD:.60,barrelLen:.55,barrelR:.015,stockD:.28,magH:.09,magD:.05,scopeLen:.24,scopeR:.032,color:{body:0x2a2a2a,stock:0x8B7355,mag:0x222222}},
-  {id:2,name:'SPAS-12',type:'shotgun',damage:60,spread:8,pellets:6,ammoMax:8,ammoReserve:40,reloadTime:3.0,fireRate:0.7,bulletSpeed:75,bulletLife:.4,bulletSize:.035,bulletColor:0xff6600,scopeMult:1.5,scopeLabel:'×1.5',recoil:.09,bodyW:.10,bodyH:.10,bodyD:.40,barrelLen:.28,barrelR:.028,stockD:.18,magH:.08,magD:.08,scopeLen:.10,scopeR:.020,color:{body:0x3a3a3a,stock:0x4a3020,mag:0x555555}}
+  {
+    id:0, name:'M4A1', type:'ar',
+    damage:22, spread:0,
+    ammoMax:30, ammoReserve:120,
+    reloadTime:2.0, fireRate:0.1,
+    bulletSpeed:90, bulletLife:.55, bulletSize:.022,
+    bulletColor:0xffaa00,
+    scopeMult:2.5, scopeLabel:'×2.5',
+    recoil:.045,
+    // model params
+    bodyW:.08,bodyH:.09,bodyD:.45,
+    barrelLen:.35, barrelR:.018,
+    stockD:.2, magH:.12, magD:.06,
+    scopeLen:.14, scopeR:.025,
+    color:{body:0x1a1a1a,stock:0x5C3A1A,mag:0x333333}
+  },
+  {
+    id:1, name:'AWM', type:'sniper',
+    damage:85, spread:0,
+    ammoMax:5, ammoReserve:25,
+    reloadTime:4.0, fireRate:1.2,
+    bulletSpeed:150, bulletLife:.8, bulletSize:.028,
+    bulletColor:0xffffff,
+    scopeMult:6.0, scopeLabel:'×6',
+    recoil:.12,
+    bodyW:.065,bodyH:.08,bodyD:.60,
+    barrelLen:.55, barrelR:.015,
+    stockD:.28, magH:.09, magD:.05,
+    scopeLen:.24, scopeR:.032,
+    color:{body:0x2a2a2a,stock:0x8B7355,mag:0x222222}
+  },
+  {
+    id:2, name:'SPAS-12', type:'shotgun',
+    damage:60, spread:8, pellets:6,
+    ammoMax:8, ammoReserve:40,
+    reloadTime:3.0, fireRate:0.7,
+    bulletSpeed:75, bulletLife:.4, bulletSize:.035,
+    bulletColor:0xff6600,
+    scopeMult:1.5, scopeLabel:'×1.5',
+    recoil:.09,
+    bodyW:.10,bodyH:.10,bodyD:.40,
+    barrelLen:.28, barrelR:.028,
+    stockD:.18, magH:.08, magD:.08,
+    scopeLen:.10, scopeR:.020,
+    color:{body:0x3a3a3a,stock:0x4a3020,mag:0x555555}
+  }
 ];
 
 let currentGunIdx = 0;
@@ -1134,36 +1189,59 @@ let isScoped      = false;
 let normalFOV     = 72;
 
 // ================================================================
-//  WEAPON MODEL
+//  WEAPON MODEL — rebuilt per gun
 // ================================================================
 function buildWeapon(){
   if(weaponGroup){ camera.remove(weaponGroup); weaponGroup=null; }
   weaponGroup=new THREE.Group();
-  const g=currentGun;
+  const g = currentGun;
   const D=new THREE.MeshLambertMaterial({color:g.color.body});
   const W=new THREE.MeshLambertMaterial({color:g.color.stock});
   const S=new THREE.MeshLambertMaterial({color:0xc8a882});
   const G=new THREE.MeshLambertMaterial({color:g.color.mag});
 
+  // Body
   const body=new THREE.Mesh(new THREE.BoxGeometry(g.bodyW,g.bodyH,g.bodyD),D);
   body.position.set(0,0,-g.bodyD/2+.05); weaponGroup.add(body);
+  // Barrel
   const brl=new THREE.Mesh(new THREE.CylinderGeometry(g.barrelR,g.barrelR,g.barrelLen,8),D);
-  brl.rotation.x=Math.PI/2; brl.position.set(0,.005,-(g.bodyD+g.barrelLen/2)); weaponGroup.add(brl);
+  brl.rotation.x=Math.PI/2; brl.position.set(0,.005,-(g.bodyD+g.barrelLen/2));
+  weaponGroup.add(brl);
+  // Muzzle tip
   const tip=new THREE.Mesh(new THREE.CylinderGeometry(g.barrelR*1.6,g.barrelR*1.2,.06,8),G);
-  tip.rotation.x=Math.PI/2; tip.position.set(0,.005,-(g.bodyD+g.barrelLen+.03)); weaponGroup.add(tip);
-  if(g.type==='shotgun'){const brl2=new THREE.Mesh(new THREE.CylinderGeometry(g.barrelR,g.barrelR,g.barrelLen,8),D);brl2.rotation.x=Math.PI/2;brl2.position.set(.04,.005,-(g.bodyD+g.barrelLen/2));weaponGroup.add(brl2);}
+  tip.rotation.x=Math.PI/2; tip.position.set(0,.005,-(g.bodyD+g.barrelLen+.03));
+  weaponGroup.add(tip);
+  // Shotgun — double barrel
+  if(g.type==='shotgun'){
+    const brl2=new THREE.Mesh(new THREE.CylinderGeometry(g.barrelR,g.barrelR,g.barrelLen,8),D);
+    brl2.rotation.x=Math.PI/2; brl2.position.set(.04,.005,-(g.bodyD+g.barrelLen/2));
+    weaponGroup.add(brl2);
+  }
+  // Stock
   const stk=new THREE.Mesh(new THREE.BoxGeometry(g.bodyW*.9,g.bodyH*.8,g.stockD),W);
   stk.position.set(0,-.01,.05); weaponGroup.add(stk);
+  // Magazine
   const mag=new THREE.Mesh(new THREE.BoxGeometry(.05,g.magH,g.magD),G);
   mag.position.set(0,-g.magH/2-g.bodyH/2,-g.bodyD*.3); weaponGroup.add(mag);
+  // Scope
   const scp=new THREE.Mesh(new THREE.CylinderGeometry(g.scopeR,g.scopeR,g.scopeLen,8),D);
-  scp.rotation.x=Math.PI/2; scp.position.set(0,g.bodyH/2+g.scopeR,-g.bodyD*.35); weaponGroup.add(scp);
-  const lens=new THREE.Mesh(new THREE.CylinderGeometry(g.scopeR*.8,g.scopeR*.8,.02,8),new THREE.MeshLambertMaterial({color:0x2288aa,transparent:true,opacity:.8}));
-  lens.rotation.x=Math.PI/2; lens.position.set(0,g.bodyH/2+g.scopeR,-(g.bodyD*.35+g.scopeLen/2+.01)); weaponGroup.add(lens);
+  scp.rotation.x=Math.PI/2; scp.position.set(0,g.bodyH/2+g.scopeR,-g.bodyD*.35);
+  weaponGroup.add(scp);
+  // Scope lens (front)
+  const lens=new THREE.Mesh(new THREE.CylinderGeometry(g.scopeR*.8,g.scopeR*.8,.02,8),
+    new THREE.MeshLambertMaterial({color:0x2288aa,transparent:true,opacity:.8}));
+  lens.rotation.x=Math.PI/2; lens.position.set(0,g.bodyH/2+g.scopeR,-(g.bodyD*.35+g.scopeLen/2+.01));
+  weaponGroup.add(lens);
+  // Hand/grip
   const hand=new THREE.Mesh(new THREE.BoxGeometry(.07,.13,.07),S);
   hand.position.set(.05,-.13,-.05); weaponGroup.add(hand);
-  for(let i=0;i<4;i++){const f=new THREE.Mesh(new THREE.BoxGeometry(.022,.06,.022),S);f.position.set(.02+i*.025,-.16,-.1);weaponGroup.add(f);}
-  const fl=new THREE.Mesh(new THREE.SphereGeometry(.07,6,6),new THREE.MeshBasicMaterial({color:0xffaa00,transparent:true,opacity:0}));
+  for(let i=0;i<4;i++){
+    const f=new THREE.Mesh(new THREE.BoxGeometry(.022,.06,.022),S);
+    f.position.set(.02+i*.025,-.16,-.1); weaponGroup.add(f);
+  }
+  // Muzzle flash
+  const fl=new THREE.Mesh(new THREE.SphereGeometry(.07,6,6),
+    new THREE.MeshBasicMaterial({color:0xffaa00,transparent:true,opacity:0}));
   fl.position.set(0,.005,-(g.bodyD+g.barrelLen+.08));
   window.mFlash=fl; weaponGroup.add(fl);
 
@@ -1172,7 +1250,7 @@ function buildWeapon(){
 }
 
 // ================================================================
-//  ENEMIES
+//  ENEMIES (Single Player only)
 // ================================================================
 function spawnEnemies(){
   ['Shadow','Ghost','Viper','Storm','Blaze','Frost','Reaper','Wolf','Hunter','Phantom','Cobra','Ace'].forEach((name,i)=>{
@@ -1218,6 +1296,7 @@ function setupControls(){
   });
   window.addEventListener('keyup',e=>keys[e.code]=false);
 
+  // Exit button
   document.getElementById('btn-exit').addEventListener('click', exitGame);
   document.getElementById('btn-exit').addEventListener('touchstart',e=>{e.stopPropagation();e.preventDefault();exitGame();},{passive:false});
 
@@ -1236,15 +1315,15 @@ function setupControls(){
       cameraPitch=Math.max(-1.2,Math.min(1.2,cameraPitch));
     }
   });
-  cv.addEventListener('mousedown',e=>{if(e.button===0&&isPointerLocked)shooting=true;if(e.button===2)toggleScope();});
-  cv.addEventListener('mouseup',  e=>{if(e.button===0)shooting=false;if(e.button===2&&isScoped)toggleScope();});
+  cv.addEventListener('mousedown',e=>{ if(e.button===0&&isPointerLocked) shooting=true; if(e.button===2) toggleScope(); });
+  cv.addEventListener('mouseup',  e=>{ if(e.button===0) shooting=false; if(e.button===2&&isScoped) toggleScope(); });
   cv.addEventListener('contextmenu',e=>e.preventDefault());
 
   const btnFire=document.getElementById('btn-fire');
   btnFire.addEventListener('touchstart',e=>{e.stopPropagation();e.preventDefault();shooting=true;},{passive:false});
   btnFire.addEventListener('touchend',  e=>{e.stopPropagation();e.preventDefault();shooting=false;},{passive:false});
-  btnFire.addEventListener('mousedown',()=>shooting=true);
-  btnFire.addEventListener('mouseup',  ()=>shooting=false);
+  btnFire.addEventListener('mousedown', ()=>shooting=true);
+  btnFire.addEventListener('mouseup',   ()=>shooting=false);
 
   document.getElementById('btn-reload').addEventListener('touchstart',e=>{e.stopPropagation();e.preventDefault();doReload();},{passive:false});
   document.getElementById('btn-reload').addEventListener('click',()=>doReload());
@@ -1263,14 +1342,14 @@ function setupControls(){
   }
 }
 
-function setupJoystick(area,knob,size,callback){
-  let tid=null,sx=0,sy=0;
+function setupJoystick(area, knob, size, callback){
+  let tid=null, sx=0, sy=0;
   const MAX=size/2-10;
   area.addEventListener('touchstart',e=>{
     e.preventDefault();
-    const t=e.changedTouches[0];tid=t.identifier;
-    const r=area.getBoundingClientRect();sx=t.clientX-r.left;sy=t.clientY-r.top;
-    knob.style.left=sx+'px';knob.style.top=sy+'px';knob.style.transition='none';
+    const t=e.changedTouches[0]; tid=t.identifier;
+    const r=area.getBoundingClientRect(); sx=t.clientX-r.left; sy=t.clientY-r.top;
+    knob.style.left=sx+'px'; knob.style.top=sy+'px'; knob.style.transition='none';
     callback({x:0,y:0});
   },{passive:false});
   area.addEventListener('touchmove',e=>{
@@ -1278,18 +1357,18 @@ function setupJoystick(area,knob,size,callback){
     for(const t of e.changedTouches){
       if(t.identifier!==tid) continue;
       const r=area.getBoundingClientRect();
-      const dx=t.clientX-r.left-sx,dy=t.clientY-r.top-sy;
-      const len=Math.sqrt(dx*dx+dy*dy),cl=Math.min(len,MAX),ang=Math.atan2(dy,dx);
-      knob.style.left=(sx+Math.cos(ang)*cl)+'px';knob.style.top=(sy+Math.sin(ang)*cl)+'px';
-      callback({x:Math.cos(ang)*(cl/MAX),y:Math.sin(ang)*(cl/MAX)});
+      const dx=t.clientX-r.left-sx, dy=t.clientY-r.top-sy;
+      const len=Math.sqrt(dx*dx+dy*dy), cl=Math.min(len,MAX), ang=Math.atan2(dy,dx);
+      knob.style.left=(sx+Math.cos(ang)*cl)+'px'; knob.style.top=(sy+Math.sin(ang)*cl)+'px';
+      callback({x:Math.cos(ang)*(cl/MAX), y:Math.sin(ang)*(cl/MAX)});
     }
   },{passive:false});
   const end=e=>{
     e.preventDefault();
     for(const t of e.changedTouches){
       if(t.identifier!==tid) continue;
-      tid=null;knob.style.transition='top .12s,left .12s';
-      knob.style.left=(size/2)+'px';knob.style.top=(size/2)+'px';
+      tid=null; knob.style.transition='top .12s,left .12s';
+      knob.style.left=(size/2)+'px'; knob.style.top=(size/2)+'px';
       callback({x:0,y:0});
     }
   };
@@ -1309,6 +1388,63 @@ function doReload(){
 // ================================================================
 //  MAIN LOOP
 // ================================================================
+// ================================================================
+//  GAME START FUNCTIONS
+// ================================================================
+function startSingle() {
+  gameMode = 'single';
+  document.getElementById('startscreen').style.display = 'none';
+  initGame();
+}
+
+function initGame() {
+  // Reset gun state
+  currentGunIdx=0; currentGun=GUNS[0];
+  gunAmmo=[30,5,8]; gunAmmoRes=[120,25,40];
+  player.ammo=gunAmmo[0]; player.ammoRes=gunAmmoRes[0];
+  player.hp=100; player.shield=70; player.kills=0; player.alive=true;
+  document.querySelectorAll('.gslot').forEach((el,i)=>el.classList.toggle('active',i===0));
+  isScoped=false;
+  bullets=[]; eBullets=[]; particles=[]; enemies=[];
+  reloading=false; grounded=true; crouching=false; jumpVel=0;
+  zoneRadius=80; zoneShrinking=false;
+  gameStarted=false; gameOver=false;
+  colorIdx=0;
+
+  initThree();
+  camera.fov=normalFOV; camera.updateProjectionMatrix();
+  buildMap();
+  buildWeapon();
+  setupControls();
+
+  if(gameMode==='single') {
+    spawnEnemies();
+    document.getElementById('alive-wrap').style.display='block';
+    // Zone shrinks after 25s
+    setTimeout(()=>{
+      zoneShrinking=true;
+      document.getElementById('zone-warn').style.display='block';
+      playSound('zone_warn');
+    }, 25000);
+    setTimeout(() => playSound('zone_warn'), 25000);
+  } else {
+    // Multiplayer HUD
+    document.getElementById('alive-wrap').style.display='none';
+    document.getElementById('mp-tag').style.display='block';
+    document.getElementById('connected-badge').style.display='block';
+    document.getElementById('ping-box').style.display='block';
+    // Broadcast position every 50ms
+    if(updateInterval) clearInterval(updateInterval);
+    updateInterval = setInterval(broadcastMyPosition, 50);
+    setInterval(sendPing, 2000);
+  }
+
+  document.getElementById('startscreen').style.display='none';
+  gameStarted=true;
+  animate();
+  updateHUD();
+}
+
 function animate(){
   if(!gameStarted) return;
   requestAnimationFrame(animate);
@@ -1325,8 +1461,13 @@ function animate(){
     if(shootCooldown>0) shootCooldown-=dt;
     updateMinimap();
   }
-  enemies.forEach(e=>{if(!e.alive)return;e.mesh.children.forEach(c=>{if(c.geometry&&c.geometry.type==='PlaneGeometry')c.lookAt(camera.position);});});
-  Object.values(remotePlayers).forEach(rp=>{rp.mesh.children.forEach(c=>{if(c.geometry&&c.geometry.type==='PlaneGeometry')c.lookAt(camera.position);});});
+  enemies.forEach(e=>{
+    if(!e.alive) return;
+    e.mesh.children.forEach(c=>{if(c.geometry&&c.geometry.type==='PlaneGeometry') c.lookAt(camera.position);});
+  });
+  Object.values(remotePlayers).forEach(rp=>{
+    rp.mesh.children.forEach(c=>{if(c.geometry&&c.geometry.type==='PlaneGeometry') c.lookAt(camera.position);});
+  });
   renderer.render(scene,camera);
 }
 
@@ -1341,8 +1482,8 @@ function updatePlayer(dt){
   if(keys['KeyD']||keys['ArrowRight']) mx= 1;
   if(Math.abs(moveVec.x)>.05) mx=moveVec.x;
   if(Math.abs(moveVec.y)>.05) mz=moveVec.y;
-  if(Math.abs(lookVec.x)>.05){cameraYaw-=lookVec.x*dt*3.0;}
-  if(Math.abs(lookVec.y)>.05){cameraPitch-=lookVec.y*dt*2.5;cameraPitch=Math.max(-1.2,Math.min(1.2,cameraPitch));}
+  if(Math.abs(lookVec.x)>.05) cameraYaw-=lookVec.x*dt*3.0;
+  if(Math.abs(lookVec.y)>.05){ cameraPitch-=lookVec.y*dt*2.5; cameraPitch=Math.max(-1.2,Math.min(1.2,cameraPitch)); }
 
   camera.rotation.order='YXZ';
   camera.rotation.y=cameraYaw;
@@ -1360,16 +1501,17 @@ function updatePlayer(dt){
   if(Math.abs(mx)>.05||Math.abs(mz)>.05){
     weaponBob+=dt*8;
     footstepTimer-=dt;
-    if(footstepTimer<=0&&grounded){playSound('footstep');footstepTimer=.38;}
+    if(footstepTimer<=0 && grounded){ playSound('footstep'); footstepTimer=.38; }
   } else { footstepTimer=0; }
 
   const tH=crouching?1.0:1.7;
   if(!grounded){
     jumpVel-=18*dt; camera.position.y+=jumpVel*dt;
-    if(camera.position.y<=tH){camera.position.y=tH;if(!grounded)playSound('land');grounded=true;jumpVel=0;}
+    if(camera.position.y<=tH){camera.position.y=tH; if(!grounded) playSound('land'); grounded=true;jumpVel=0;}
   } else camera.position.y=tH;
 
-  if(gameMode==='single'&&Math.sqrt(camera.position.x**2+camera.position.z**2)>zoneRadius){
+  // Zone damage (single player only)
+  if(gameMode==='single' && Math.sqrt(camera.position.x**2+camera.position.z**2)>zoneRadius){
     player.hp-=6*dt; flashDmg();
     document.getElementById('zone-warn').style.display='block';
     if(player.hp<=0) killPlayer(); updateHUD();
@@ -1387,60 +1529,79 @@ function updateWeaponAnim(dt){
 //  GUN SWITCH
 // ================================================================
 function switchGun(idx){
-  if(reloading){reloading=false;document.getElementById('rl-wrap').style.display='none';}
+  if(reloading){ reloading=false; document.getElementById('rl-wrap').style.display='none'; }
   if(isScoped) toggleScope();
   currentGunIdx=idx; currentGun=GUNS[idx];
+  // Update slot highlights
   document.querySelectorAll('.gslot').forEach((el,i)=>el.classList.toggle('active',i===idx));
   playSound('gun_switch');
+  // Rebuild weapon model
   buildWeapon();
+  // Load ammo for this gun (track per-gun ammo)
   player.ammo    = gunAmmo[idx];
   player.ammoRes = gunAmmoRes[idx];
+  // Update fire rate
   shootCooldown=0;
   updateHUD();
 }
 
-let gunAmmo    = [30,5,8];
-let gunAmmoRes = [120,25,40];
+// Per-gun ammo tracking
+let gunAmmo    = [30,  5,  8];
+let gunAmmoRes = [120, 25, 40];
 
 // ================================================================
-//  SCOPE
+//  SCOPE / ADS
 // ================================================================
 function toggleScope(){
-  if(currentGun.type==='shotgun'&&!isScoped) return;
+  if(currentGun.type==='shotgun' && !isScoped) return;
   isScoped=!isScoped;
   const ov=document.getElementById('scope-overlay');
   const btn=document.getElementById('btn-scope');
   document.getElementById('scope-label').textContent=currentGun.scopeLabel;
   if(isScoped){
-    playSound('scope_in'); ov.style.display='block'; btn.classList.add('scoped');
-    camera.fov=normalFOV/currentGun.scopeMult; camera.updateProjectionMatrix();
+    playSound('scope_in');
+    ov.style.display='block';
+    btn.classList.add('scoped');
+    camera.fov=normalFOV/currentGun.scopeMult;
+    camera.updateProjectionMatrix();
     if(currentGun.type==='sniper') weaponGroup.visible=false;
     document.getElementById('xhair').style.display='none';
   } else {
-    playSound('scope_out'); ov.style.display='none'; btn.classList.remove('scoped');
-    camera.fov=normalFOV; camera.updateProjectionMatrix();
+    playSound('scope_out');
+    ov.style.display='none';
+    btn.classList.remove('scoped');
+    camera.fov=normalFOV;
+    camera.updateProjectionMatrix();
     weaponGroup.visible=true;
     document.getElementById('xhair').style.display='block';
   }
 }
 
 // ================================================================
-//  EXIT
+//  EXIT GAME
 // ================================================================
 function exitGame(){
+  // Confirm
   if(!confirm('Exit to main menu?')) return;
+  // Stop game
   gameStarted=false; gameOver=false; gameMode=null;
   isScoped=false; camera.fov=normalFOV; camera.updateProjectionMatrix();
+  // Reset scope
   document.getElementById('scope-overlay').style.display='none';
   document.getElementById('xhair').style.display='block';
+  // Reset player
   player.hp=100; player.shield=70; player.kills=0; player.alive=true;
+  // Reset guns
   gunAmmo=[30,5,8]; gunAmmoRes=[120,25,40];
   currentGunIdx=0; currentGun=GUNS[0];
   player.ammo=gunAmmo[0]; player.ammoRes=gunAmmoRes[0];
+  // Reset game state
   zoneRadius=80; zoneShrinking=false;
   bullets=[]; eBullets=[]; particles=[]; enemies=[];
   reloading=false; grounded=true; crouching=false;
+  // Exit pointer lock
   if(document.pointerLockElement) document.exitPointerLock();
+  // Hide HUD elements
   document.getElementById('mp-tag').style.display='none';
   document.getElementById('connected-badge').style.display='none';
   document.getElementById('ping-box').style.display='none';
@@ -1448,24 +1609,30 @@ function exitGame(){
   document.getElementById('zone-warn').style.display='none';
   document.getElementById('rl-wrap').style.display='none';
   document.getElementById('endscreen').style.display='none';
-  if(scene){while(scene.children.length>0)scene.remove(scene.children[0]);scene=null;}
-  if(renderer){renderer.dispose();}
-  if(updateInterval){clearInterval(updateInterval);updateInterval=null;}
+  // Clear scene
+  if(scene){ while(scene.children.length>0) scene.remove(scene.children[0]); scene=null; }
+  if(renderer){ renderer.dispose(); }
+  // Clear multiplayer
+  if(updateInterval){ clearInterval(updateInterval); updateInterval=null; }
   Object.values(peerConnections).forEach(c=>c.close&&c.close());
   Object.keys(peerConnections).forEach(k=>delete peerConnections[k]);
   Object.keys(remotePlayers).forEach(k=>delete remotePlayers[k]);
+  // Show main menu
   document.getElementById('startscreen').style.display='flex';
   document.getElementById('mpscreen').style.display='none';
+  // Reload page for clean state
   location.reload();
 }
 
 // ================================================================
-//  SHOOT — with damage message broadcasting
+//  SHOOT
 // ================================================================
 function doShoot(){
   if(reloading||player.ammo<=0||!player.alive) return;
   const g=currentGun;
+
   player.ammo--; gunAmmo[currentGunIdx]=player.ammo; updateHUD();
+  // Play shoot sound
   const sndMap={ar:'shoot_ar',sniper:'shoot_sniper',shotgun:'shoot_shotgun'};
   playSound(sndMap[g.type]||'shoot_ar');
   window.mFlash.material.opacity=1; setTimeout(()=>window.mFlash.material.opacity=0,55);
@@ -1474,13 +1641,14 @@ function doShoot(){
   const dirBase=new THREE.Vector3(); camera.getWorldDirection(dirBase);
   const ori=camera.position.clone(); ori.y-=.04;
 
+  // Shotgun fires multiple pellets
   const pellets=g.pellets||1;
   for(let p=0;p<pellets;p++){
     const dir=dirBase.clone();
     if(g.spread>0){
       const spread=g.spread*(Math.PI/180);
       dir.x+=(Math.random()-.5)*spread;
-      dir.y+=(Math.random()-.5)*spread*.5;
+      dir.y+=(Math.random()-.5)*spread*0.5;
       dir.z+=(Math.random()-.5)*spread;
       dir.normalize();
     }
@@ -1488,16 +1656,17 @@ function doShoot(){
       pos:ori.clone(), dir,
       speed:g.bulletSpeed, life:g.bulletLife,
       damage:g.damage,
-      isLocal:true,  // this is our own bullet
       mesh:mkBulletMesh(g.bulletColor, g.bulletSize*(1+p*.005))
     };
     b.mesh.position.copy(ori); scene.add(b.mesh); bullets.push(b);
   }
 
-  // Broadcast shoot to peers (include damage value)
+  // Multiplayer: broadcast visual bullet + do immediate hitscan for PvP damage
   if(gameMode==='multi'){
-    const bd={type:'shoot',ox:ori.x,oy:ori.y,oz:ori.z,dx:dirBase.x,dy:dirBase.y,dz:dirBase.z,dmg:g.damage};
+    const bd={type:'bullet', ox:ori.x,oy:ori.y,oz:ori.z, dx:dirBase.x,dy:dirBase.y,dz:dirBase.z, speed:g.bulletSpeed,life:g.bulletLife};
     Object.values(peerConnections).forEach(c=>{if(c.open)c.send(bd);});
+    // Hitscan — check if any remote player was hit right now
+    checkPvPHit(ori, dirBase.clone().normalize(), g.damage);
   }
   if(player.ammo===0) doReload();
 }
@@ -1507,7 +1676,7 @@ function mkBulletMesh(col,r){
 }
 
 // ================================================================
-//  BULLETS — with multiplayer damage detection
+//  BULLETS
 // ================================================================
 function updateBullets(dt){
   for(let i=bullets.length-1;i>=0;i--){
@@ -1516,56 +1685,22 @@ function updateBullets(dt){
     b.mesh.position.copy(b.pos);
     if(b.life<=0){scene.remove(b.mesh);bullets.splice(i,1);continue;}
 
+    // Visual-only bullets (remote player bullets) — no damage logic here
+    if(b.visualOnly) continue;
+
+    // Local bullets — check AI enemies only
     let hit=false;
-
-    // ── Local bullets hit AI enemies ──
-    if(b.isLocal && gameMode==='single'){
-      for(let j=enemies.length-1;j>=0;j--){
-        const e=enemies[j]; if(!e.alive) continue;
-        if(b.pos.distanceTo(e.mesh.position.clone().add(new THREE.Vector3(0,1.2,0)))<1.1){
-          e.hp-=(b.damage||22); scene.remove(b.mesh); bullets.splice(i,1);
-          showHitMark(); playSound('hit'); spawnHitFx(b.pos.clone()); updateEnemyHP(e);
-          if(e.hp<=0) killEnemy(e); hit=true; break;
-        }
+    for(let j=enemies.length-1;j>=0;j--){
+      const e=enemies[j]; if(!e.alive) continue;
+      if(b.pos.distanceTo(e.mesh.position.clone().add(new THREE.Vector3(0,1.2,0)))<1.1){
+        e.hp-=(b.damage||22); scene.remove(b.mesh); bullets.splice(i,1);
+        showHitMark(); playSound('hit'); spawnHitFx(b.pos.clone()); updateEnemyHP(e);
+        if(e.hp<=0) killEnemy(e); hit=true; break;
       }
-      if(hit) continue;
-    }
-
-    // ── Local bullets hit remote players (multiplayer) ──
-    if(b.isLocal && gameMode==='multi'){
-      for(const [pid, rp] of Object.entries(remotePlayers)){
-        if(!rp.mesh) continue;
-        const rpos = rp.mesh.position.clone().add(new THREE.Vector3(0,1.2,0));
-        if(b.pos.distanceTo(rpos) < 1.2){
-          scene.remove(b.mesh); bullets.splice(i,1);
-          showHitMark(); playSound('hit'); spawnHitFx(b.pos.clone());
-          // ── DAMAGE FIX: Send damage message to that specific player ──
-          const dmgMsg = { type:'hit_player', targetId: pid, dmg: b.damage };
-          // Send to that peer directly if connected, else broadcast
-          if(peerConnections[pid] && peerConnections[pid].open){
-            peerConnections[pid].send(dmgMsg);
-          } else {
-            // Relay through all peers (they forward if not target)
-            Object.values(peerConnections).forEach(c=>{ if(c.open) c.send(dmgMsg); });
-          }
-          hit=true; break;
-        }
-      }
-      if(hit) continue;
-    }
-
-    // ── Remote bullets hit local player ──
-    if(b.isRemote && player.alive){
-      if(b.pos.distanceTo(camera.position) < 0.8){
-        scene.remove(b.mesh); bullets.splice(i,1);
-        applyDamage(b.damage || 22);
-        hit=true;
-      }
-      if(hit) continue;
     }
   }
 
-  // AI enemy bullets vs local player
+  // ── ENEMY bullets → local player (single player) ──
   for(let i=eBullets.length-1;i>=0;i--){
     const b=eBullets[i]; b.life-=dt;
     b.pos.add(b.dir.clone().multiplyScalar(b.speed*dt));
@@ -1578,11 +1713,10 @@ function updateBullets(dt){
     }
   }
 }
-
 function updateEnemyHP(e){const r=Math.max(0,e.hp/e.maxHp);e.hbFill.scale.x=r;e.hbFill.position.x=-(1-r)*.39;}
 
 // ================================================================
-//  ENEMY AI
+//  ENEMY AI (Single Player)
 // ================================================================
 function updateEnemies(dt){
   enemies.forEach(e=>{
@@ -1595,7 +1729,7 @@ function updateEnemies(dt){
       if(e.mesh.position.distanceTo(target)<2) e.patrolTarget=new THREE.Vector3((Math.random()-.5)*160,0,(Math.random()-.5)*160);
     } else { target=camera.position.clone(); target.y=0; }
     const dir=target.clone().sub(e.mesh.position); dir.y=0; dir.normalize();
-    if(e.state!=='shoot'||dist>8){e.mesh.position.x+=dir.x*e.speed*dt;e.mesh.position.z+=dir.z*e.speed*dt;}
+    if(e.state!=='shoot'||dist>8){ e.mesh.position.x+=dir.x*e.speed*dt; e.mesh.position.z+=dir.z*e.speed*dt; }
     e.mesh.lookAt(target.x,e.mesh.position.y,target.z); e.mesh.position.y=0;
     if(e.state==='shoot'){e.shootT-=dt;if(e.shootT<=0){enemyFire(e);e.shootT=e.shootInterval;}}
   });
@@ -1604,7 +1738,7 @@ function enemyFire(e){
   if(!player.alive) return;
   const from=e.mesh.position.clone().add(new THREE.Vector3(0,1.5,0));
   const dir=camera.position.clone().sub(from).normalize();
-  dir.x+=(Math.random()-.5)*.18;dir.y+=(Math.random()-.5)*.1;dir.z+=(Math.random()-.5)*.18;dir.normalize();
+  dir.x+=(Math.random()-.5)*.18; dir.y+=(Math.random()-.5)*.1; dir.z+=(Math.random()-.5)*.18; dir.normalize();
   const b={pos:from,dir,speed:55,life:.9,mesh:mkBulletMesh(0xff2200,.04)};
   b.mesh.position.copy(from); scene.add(b.mesh); eBullets.push(b);
 }
@@ -1641,7 +1775,7 @@ function updateReload(dt){
 }
 
 // ================================================================
-//  ZONE
+//  ZONE (Single Player only)
 // ================================================================
 function updateZone(dt){
   if(zoneShrinking&&zoneRadius>12){
@@ -1655,19 +1789,22 @@ function updateZone(dt){
 //  MINIMAP
 // ================================================================
 function updateMinimap(){
-  const cv=document.getElementById('mmcv'),ctx=cv.getContext('2d'),W=100,sc=W/200;
+  const cv=document.getElementById('mmcv'), ctx=cv.getContext('2d'), W=100, sc=W/200;
   ctx.fillStyle='rgba(8,24,8,.92)'; ctx.fillRect(0,0,W,W);
   if(gameMode==='single'){
     ctx.strokeStyle='rgba(50,150,255,.85)'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.arc(W/2,W/2,zoneRadius*sc,0,Math.PI*2); ctx.stroke();
   }
+  // AI enemies (red)
   enemies.forEach(e=>{
     if(!e.alive) return;
     ctx.fillStyle='#ff3333'; ctx.beginPath(); ctx.arc(W/2+e.mesh.position.x*sc,W/2+e.mesh.position.z*sc,2.5,0,Math.PI*2); ctx.fill();
   });
+  // Remote players (blue)
   Object.values(remotePlayers).forEach(rp=>{
     ctx.fillStyle='#44aaff'; ctx.beginPath(); ctx.arc(W/2+rp.mesh.position.x*sc,W/2+rp.mesh.position.z*sc,3,0,Math.PI*2); ctx.fill();
   });
+  // Self (green)
   const px=W/2+camera.position.x*sc, py=W/2+camera.position.z*sc;
   ctx.fillStyle='#44ff88'; ctx.beginPath(); ctx.arc(px,py,4,0,Math.PI*2); ctx.fill();
   ctx.strokeStyle='#44ff88'; ctx.lineWidth=2;
@@ -1678,7 +1815,7 @@ function updateMinimap(){
 //  GAME EVENTS
 // ================================================================
 function killEnemy(e){
-  e.alive=false; player.kills++; scene.remove(e.mesh); addKillFeed('You killed '+e.name);
+  e.alive=false; player.kills++; scene.remove(e.mesh); addKillFeed(e.name);
   playSound('kill'); updateHUD();
   if(enemies.filter(x=>x.alive).length===0) setTimeout(()=>showEnd(true),600);
 }
@@ -1690,10 +1827,10 @@ function showEnd(won){
   document.getElementById('end-stats').textContent='Kills: '+player.kills+'  |  '+(won?'Last man standing!':enemies.filter(x=>x.alive).length+' bots left');
 }
 function showHitMark(){ const h=document.getElementById('hitmark'); h.classList.add('on'); setTimeout(()=>h.classList.remove('on'),120); }
-function flashDmg(){ const d=document.getElementById('dmg'); d.style.opacity='1'; setTimeout(()=>d.style.opacity='0',200); }
-function addKillFeed(msg){
+function flashDmg(){ playSound('damage'); const d=document.getElementById('dmg'); d.style.opacity='1'; setTimeout(()=>d.style.opacity='0',200); }
+function addKillFeed(name){
   const kf=document.getElementById('killfeed');
-  const d=document.createElement('div'); d.className='kfeed'; d.textContent=msg; kf.appendChild(d); setTimeout(()=>d.remove(),3000);
+  const d=document.createElement('div'); d.className='kfeed'; d.textContent='You killed '+name; kf.appendChild(d); setTimeout(()=>d.remove(),3000);
 }
 function updateHUD(){
   const hp=Math.max(0,player.hp);
@@ -1707,47 +1844,88 @@ function updateHUD(){
   if(gameMode==='single') document.getElementById('alive-num').textContent=enemies.filter(e=>e.alive).length+1;
 }
 
-// ================================================================
-//  JOIN ROOM (global override)
-// ================================================================
+// ────────────────────────────────────────────────
+// Final overrides
+// ────────────────────────────────────────────────
+window.showMpLobby = function() {
+  document.getElementById('startscreen').style.display='none';
+  document.getElementById('mpscreen').style.display='flex';
+  initPeerWithCode();
+  setTimeout(refreshRoomList, 1500);
+};
+
 window.joinRoom = function() {
   const input = document.getElementById('join-input').value.trim().toUpperCase().replace(/\s/g,'');
-  if(input.length < 4){ document.getElementById('join-status').textContent='⚠ Enter valid code'; return; }
-  document.getElementById('join-status').textContent='Connecting...';
+  if(input.length < 4){ document.getElementById('join-status').textContent='⚠ Enter a valid room code'; return; }
+  document.getElementById('join-status').textContent='🔄 Connecting to '+input+'...';
+  document.getElementById('btn-do-join').disabled = true;
 
   function doJoin() {
-    if(typeof Peer === 'undefined'){ document.getElementById('join-status').textContent='⚠ PeerJS not loaded'; return; }
-    if(myPeer && !myPeer.destroyed){ myPeer.destroy(); myPeer=null; }
+    if(typeof Peer === 'undefined'){
+      document.getElementById('join-status').textContent='⚠ PeerJS not loaded';
+      document.getElementById('btn-do-join').disabled = false;
+      return;
+    }
+    // Destroy existing peer (host peer created by initPeerWithCode)
+    if(myPeer && !myPeer.destroyed) { myPeer.destroy(); myPeer=null; }
 
-    myPeer = new Peer(undefined, {
+    const joinPeer = new Peer(undefined, {
       host:'0.peerjs.com', port:443, path:'/', secure:true,
-      config:{ iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}]}
+      config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}]}
     });
 
-    myPeer.on('open', (id) => {
+    joinPeer.on('open', id => {
       myPeerId = id;
-      document.getElementById('join-status').textContent='Connecting to room '+input+'...';
-      const conn = myPeer.connect(input, { reliable:true, serialization:'json' });
+      myPeer   = joinPeer;
+      isHost   = false;
+
+      document.getElementById('join-status').textContent='🔄 Reaching host '+input+'...';
+      const conn = myPeer.connect(input, {reliable:true, serialization:'json'});
+      hostConn = conn;
+
       let opened = false;
       conn.on('open', () => {
         opened = true;
-        document.getElementById('join-status').textContent='✅ Connected! Waiting for host to start...';
+        // Auto-start immediately — joiner enters game right away
+        document.getElementById('join-status').textContent='✅ Connected! Entering game...';
         setupConn(conn, false);
-        // Add this room to storage for others to discover
-        saveRoomToStorage(input, 'Unknown', 2);
+        // Enter game after short delay so setupConn can finish
+        setTimeout(() => {
+          gameMode = 'multi';
+          document.getElementById('mpscreen').style.display = 'none';
+          initGame();
+        }, 800);
       });
-      conn.on('error', (e) => { document.getElementById('join-status').textContent='❌ Cannot connect: '+e; });
-      setTimeout(() => { if(!opened) document.getElementById('join-status').textContent='❌ Timed out. Check the code.'; }, 10000);
+      conn.on('error', () => {
+        document.getElementById('join-status').textContent='❌ Could not reach room "'+input+'" — check code';
+        document.getElementById('btn-do-join').disabled = false;
+      });
+      setTimeout(() => {
+        if(!opened){
+          document.getElementById('join-status').textContent='❌ Timed out — is the code correct?';
+          document.getElementById('btn-do-join').disabled = false;
+        }
+      }, 10000);
     });
-    myPeer.on('error', e => { document.getElementById('join-status').textContent='⚠ Peer error: '+e.type; });
-    myPeer.on('connection', conn => setupConn(conn, false));
+
+    joinPeer.on('error', e => {
+      document.getElementById('join-status').textContent='⚠ Error: '+e.type;
+      document.getElementById('btn-do-join').disabled = false;
+    });
+    // Accept connections from other peers in the room
+    joinPeer.on('connection', conn => setupConn(conn, false));
   }
 
-  if(typeof Peer !== 'undefined') { doJoin(); }
-  else {
-    document.getElementById('join-status').textContent='Loading PeerJS...';
+  if(typeof Peer !== 'undefined') {
+    doJoin();
+  } else {
+    document.getElementById('join-status').textContent='⏳ Loading PeerJS...';
     let w=0;
-    const t=setInterval(()=>{ w+=300; if(typeof Peer!=='undefined'){clearInterval(t);doJoin();} else if(w>8000){clearInterval(t);document.getElementById('join-status').textContent='⚠ PeerJS failed to load';} },300);
+    const t=setInterval(()=>{
+      w+=300;
+      if(typeof Peer!=='undefined'){ clearInterval(t); doJoin(); }
+      else if(w>8000){ clearInterval(t); document.getElementById('join-status').textContent='⚠ PeerJS failed to load'; document.getElementById('btn-do-join').disabled=false; }
+    },300);
   }
 };
 </script>
