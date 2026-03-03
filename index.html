@@ -104,8 +104,8 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 
 /* GUN SWITCHER BAR */
 #gun-switcher{
-  position:absolute;bottom:165px;right:82px;
-  display:flex;flex-direction:column;gap:5px;pointer-events:all;
+  position:absolute;bottom:50px;right:400px;
+  display:flex;flex-direction:row;gap:5px;pointer-events:all;
 }
 .gslot{
   width:52px;height:52px;border-radius:10px;
@@ -123,7 +123,7 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 
 /* SCOPE BUTTON */
 #btn-scope{
-  position:absolute;bottom:350px;right:20px;
+  position:absolute;bottom:300px;right:20px;
   width:52px;height:52px;border-radius:50%;
   background:rgba(10,40,60,.88);border:2px solid #22aaff;
   box-shadow:0 0 12px rgba(30,150,255,.35);
@@ -223,6 +223,24 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #end-stats{color:#bbb;font-size:17px;margin-bottom:28px;}
 #restart-btn{padding:13px 42px;background:linear-gradient(135deg,#ff4400,#ff2200);color:#fff;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer;letter-spacing:2px;}
 
+/* AUTH SCREEN */
+#authscreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;background:linear-gradient(180deg,#020a14 0%,#050d05 100%);pointer-events:all;}
+#auth-logo{font-size:44px;font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,#ff8800,#ffee00,#ff4400);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+#auth-sub{color:#334;font-size:11px;letter-spacing:7px;margin-bottom:28px;}
+.auth-card{background:rgba(8,18,40,.92);border:1px solid rgba(50,120,255,.3);border-radius:18px;padding:28px 32px;width:min(340px,90vw);}
+.auth-tabs{display:flex;margin-bottom:20px;border-radius:10px;overflow:hidden;border:1px solid rgba(50,100,200,.3);}
+.auth-tab{flex:1;padding:10px;text-align:center;font-size:12px;letter-spacing:2px;font-weight:bold;cursor:pointer;transition:background .2s,color .2s;color:#446;background:rgba(0,0,0,.3);font-family:inherit;border:none;}
+.auth-tab.active{background:linear-gradient(135deg,rgba(0,80,200,.6),rgba(0,40,120,.6));color:#aaddff;}
+.auth-field{width:100%;padding:10px 14px;border-radius:8px;background:rgba(0,0,0,.5);border:1px solid rgba(60,120,255,.35);color:#cce;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;letter-spacing:1px;box-sizing:border-box;transition:border-color .2s;}
+.auth-field:focus{border-color:rgba(60,180,255,.7);}
+.auth-field::placeholder{color:#334;font-size:12px;letter-spacing:1px;}
+.auth-btn{width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;font-size:14px;font-weight:bold;letter-spacing:2px;font-family:inherit;margin-top:4px;transition:opacity .15s;}
+#auth-login-btn{background:linear-gradient(135deg,#0055cc,#003399);color:#aadeff;}
+#auth-signup-btn{background:linear-gradient(135deg,#005533,#003322);color:#aaffcc;}
+.auth-btn:active{opacity:.8;}
+.auth-err{color:#ff5555;font-size:11px;text-align:center;margin-top:6px;min-height:16px;letter-spacing:.5px;}
+.auth-ok{color:#44ff88;font-size:11px;text-align:center;margin-top:6px;min-height:16px;letter-spacing:.5px;}
+
 /* LOCK NOTICE */
 #lock-notice{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.78);color:#fff;padding:15px 26px;border-radius:12px;font-size:14px;text-align:center;pointer-events:none;display:none;border:1px solid rgba(255,255,255,.2);}
 
@@ -230,7 +248,7 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
 #ping-box{position:absolute;bottom:195px;left:16px;color:rgba(100,255,150,.6);font-size:10px;letter-spacing:1px;display:none;}
 
 /* CONNECTED PLAYERS */
-#connected-badge{position:absolute;top:14px;left:130px;background:rgba(0,50,120,.7);color:#aaddff;padding:3px 10px;border-radius:12px;font-size:11px;display:none;border:1px solid rgba(50,120,255,.4);}
+#connected-badge{position:absolute;top:14px;left:200px;background:rgba(0,50,120,.7);color:#aaddff;padding:3px 10px;border-radius:12px;font-size:11px;display:none;border:1px solid rgba(50,120,255,.4);}
 </style>
 </head>
 <body>
@@ -304,7 +322,6 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
       <div class="gslot-key">[3]</div>
     </div>
   </div>
-  <div id="switch-hint">Keys 1/2/3 or Tab to switch gun</div>
 
   <!-- SCOPE BUTTON -->
   <div id="btn-scope" onclick="toggleScope()"><span>&#x1F52D;</span><div id="btn-scope-label">SCOPE</div></div>
@@ -323,12 +340,44 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
   <div id="pc-hint">WASD Move | Mouse Aim | Click Shoot | R Reload | Tab Switch Gun | RClick/Q Scope | Space Jump</div>
 </div>
 
+<!-- ═══ AUTH SCREEN ═══ -->
+<div id="authscreen">
+  <div id="auth-logo">FREEZONE</div>
+  <div id="auth-sub">BATTLE ROYALE</div>
+  <div class="auth-card">
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"   onclick="authSwitchTab('login')">LOGIN</button>
+      <button class="auth-tab"        id="tab-signup"  onclick="authSwitchTab('signup')">SIGN UP</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="form-login">
+      <input class="auth-field" id="li-email"    type="email"    placeholder="Email address" autocomplete="email"/>
+      <input class="auth-field" id="li-password" type="password" placeholder="Password"      autocomplete="current-password"/>
+      <button class="auth-btn" id="auth-login-btn" onclick="authLogin()">▶ LOGIN</button>
+      <div id="li-msg" class="auth-err"></div>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div id="form-signup" style="display:none;">
+      <input class="auth-field" id="su-email"    type="email"    placeholder="Email address"        autocomplete="email"/>
+      <input class="auth-field" id="su-password" type="password" placeholder="Set password (min 6)" autocomplete="new-password"/>
+      <input class="auth-field" id="su-username" type="text"     placeholder="Username (max 12)"    maxlength="12"
+             oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'').slice(0,12).toUpperCase()"/>
+      <button class="auth-btn" id="auth-signup-btn" onclick="authSignup()">✚ CREATE ACCOUNT</button>
+      <div id="su-msg" class="auth-err"></div>
+    </div>
+  </div>
+</div>
+
 <div id="lock-notice">&#x1F5B1; Click screen to aim &nbsp;|&nbsp; ESC to release</div>
 
 <!-- ═══ MAIN START SCREEN ═══ -->
-<div id="startscreen">
+<div id="startscreen" style="display:none;">
   <div id="gtitle">FREEZONE</div>
   <div id="gsub">BATTLE ROYALE</div>
+  <div id="welcome-tag" style="color:#445;font-size:12px;letter-spacing:3px;margin-bottom:24px;"></div>
   <div class="mode-btn-row">
     <button class="mode-btn" id="btn-single" onclick="startSingle()">
       <span class="mode-icon">&#x1F3AE;</span>
@@ -341,6 +390,10 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
       <span class="mode-sub">Training with Friends</span>
     </button>
   </div>
+  <button onclick="authLogout()" style="margin-top:22px;background:none;border:1px solid #333;color:#445;
+    padding:6px 18px;border-radius:8px;cursor:pointer;font-size:11px;letter-spacing:2px;font-family:inherit;">
+    &#x21BA; LOGOUT
+  </button>
 </div>
 
 <!-- ═══ MULTIPLAYER LOBBY SCREEN ═══ -->
@@ -442,7 +495,7 @@ let scene, camera, renderer, clock;
 let gameStarted = false, gameOver = false;
 let gameMode = null; // 'single' | 'multi'
 
-const player = { hp:100, shield:100, ammo:30, ammoRes:120, kills:0, alive:true };
+const player = { hp:100, shield:70, ammo:30, ammoRes:120, kills:0, alive:true };
 const keys = {};
 let cameraYaw=0, cameraPitch=0, isPointerLocked=false;
 let moveVec={x:0,y:0}, lookVec={x:0,y:0};
@@ -459,12 +512,106 @@ let weaponGroup;
 //  MULTIPLAYER STATE
 // ================================================================
 let myPeer = null, myPeerId = null, myRoomCode = null;
-let peerConnections = {};   // peerId -> DataConnection
-let remotePlayers   = {};   // peerId -> {mesh, hbFill, hp, kills, lastSeen}
+let peerConnections = {};
+let remotePlayers   = {};
 let isHost = false, hostConn = null;
 let updateInterval = null, pingStart = {};
 const PLAYER_COLORS = [0x2255aa,0x228833,0x882222,0x886622,0x553388,0x226688];
 let colorIdx = 0;
+
+// ── USERNAME ──
+const UN_KEY  = 'fz_username';
+const AUTH_KEY = 'fz_users_v1';
+const SESSION_KEY = 'fz_session';
+let myUsername = 'PLAYER';
+
+// ================================================================
+//  AUTH SYSTEM
+// ================================================================
+function _getUsers() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY) || '{}'); } catch(e) { return {}; }
+}
+function _saveUsers(u) { localStorage.setItem(AUTH_KEY, JSON.stringify(u)); }
+
+function authSwitchTab(tab) {
+  document.getElementById('form-login').style.display  = tab==='login'  ? 'block' : 'none';
+  document.getElementById('form-signup').style.display = tab==='signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active',  tab==='login');
+  document.getElementById('tab-signup').classList.toggle('active', tab==='signup');
+  document.getElementById('li-msg').textContent = '';
+  document.getElementById('su-msg').textContent = '';
+}
+
+function authLogin() {
+  const email = document.getElementById('li-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('li-password').value;
+  const msg   = document.getElementById('li-msg');
+  if(!email || !pass) { msg.textContent = '⚠ Fill in all fields'; return; }
+  const users = _getUsers();
+  if(!users[email]) { msg.textContent = '❌ No account found with this email'; return; }
+  if(users[email].password !== btoa(pass)) { msg.textContent = '❌ Wrong password'; return; }
+  // Success
+  myUsername = users[email].username;
+  localStorage.setItem(SESSION_KEY, email);
+  _enterGame();
+}
+
+function authSignup() {
+  const email = document.getElementById('su-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('su-password').value;
+  const uname = document.getElementById('su-username').value.trim().toUpperCase();
+  const msg   = document.getElementById('su-msg');
+  msg.className = 'auth-err';
+
+  if(!email || !pass || !uname) { msg.textContent = '⚠ Fill in all fields'; return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = '⚠ Enter a valid email'; return; }
+  if(pass.length < 6) { msg.textContent = '⚠ Password must be at least 6 characters'; return; }
+  if(uname.length < 2) { msg.textContent = '⚠ Username must be at least 2 characters'; return; }
+
+  const users = _getUsers();
+  // Check duplicate email
+  if(users[email]) { msg.textContent = '❌ This email is already registered'; return; }
+  // Check duplicate username
+  const nameTaken = Object.values(users).some(u => u.username === uname);
+  if(nameTaken) { msg.textContent = '❌ Username "' + uname + '" is already taken'; return; }
+
+  // Save account
+  users[email] = { username: uname, password: btoa(pass), createdAt: Date.now() };
+  _saveUsers(users);
+  localStorage.setItem(SESSION_KEY, email);
+  myUsername = uname;
+  msg.className = 'auth-ok';
+  msg.textContent = '✅ Account created! Loading...';
+  setTimeout(_enterGame, 800);
+}
+
+function _enterGame() {
+  document.getElementById('authscreen').style.display = 'none';
+  document.getElementById('startscreen').style.display = 'flex';
+  const wt = document.getElementById('welcome-tag');
+  if(wt) wt.textContent = '👤 ' + myUsername;
+}
+
+function authLogout() {
+  localStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+// Auto-login if session exists
+window.addEventListener('load', () => {
+  const sess = localStorage.getItem(SESSION_KEY);
+  if(sess) {
+    const users = _getUsers();
+    if(users[sess]) {
+      myUsername = users[sess].username;
+      _enterGame();
+      return;
+    }
+  }
+  // No session → show auth screen
+  document.getElementById('authscreen').style.display = 'flex';
+  document.getElementById('startscreen').style.display = 'none';
+});
 
 // ================================================================
 //  PEER INIT — host creates room with custom short code
@@ -678,7 +825,8 @@ function copyCode() {
 function broadcastMyPosition() {
   if(!gameStarted) return;
   const d = {type:'pos', x:camera.position.x, y:camera.position.y, z:camera.position.z,
-             yaw:cameraYaw, pitch:cameraPitch, hp:player.hp, kills:player.kills};
+             yaw:cameraYaw, pitch:cameraPitch, hp:player.hp, kills:player.kills,
+             name: myUsername};
   Object.values(peerConnections).forEach(c => { if(c.open) c.send(d); });
 }
 
@@ -692,7 +840,47 @@ function sendPing() {
 // ================================================================
 //  REMOTE PLAYER MESH + UPDATE
 // ================================================================
-function makeRemotePlayerMesh(color) {
+function makeNameTagSprite(name, color) {
+  const canvas = document.createElement('canvas');
+  canvas.width  = 256; canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  // Background pill
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  roundRect(ctx, 4, 12, 248, 40, 10);
+  ctx.fill();
+  // Color bar on left
+  ctx.fillStyle = '#' + color.toString(16).padStart(6,'0');
+  roundRect(ctx, 4, 12, 8, 40, 4);
+  ctx.fill();
+  // Name text
+  ctx.fillStyle = '#ffffff';
+  ctx.font      = 'bold 22px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(name.slice(0,12), 132, 32);
+  const tex = new THREE.CanvasTexture(canvas);
+  const mat = new THREE.SpriteMaterial({map: tex, transparent: true, depthTest: false});
+  const sprite = new THREE.Sprite(mat);
+  sprite.scale.set(1.6, 0.4, 1);
+  sprite.position.y = 2.85;
+  return sprite;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+function makeRemotePlayerMesh(color, name) {
   const g = new THREE.Group();
   const ml=new THREE.MeshLambertMaterial({color});
   const sk=new THREE.MeshLambertMaterial({color:0xC8A882});
@@ -704,25 +892,43 @@ function makeRemotePlayerMesh(color) {
   [-.15,.15].forEach(ox=>{const l=new THREE.Mesh(new THREE.BoxGeometry(.22,.7,.3),tr);l.position.set(ox,.45,0);g.add(l);});
   [-.42,.42].forEach(ox=>{const a=new THREE.Mesh(new THREE.BoxGeometry(.2,.65,.25),ml);a.position.set(ox,1.1,0);g.add(a);});
   const egun=new THREE.Mesh(new THREE.BoxGeometry(.06,.08,.45),new THREE.MeshLambertMaterial({color:0x111111})); egun.position.set(.55,1.1,-.2); g.add(egun);
-  const hbBg=new THREE.Mesh(new THREE.PlaneGeometry(.8,.1),new THREE.MeshBasicMaterial({color:0x001133,side:THREE.DoubleSide})); hbBg.position.y=2.35; g.add(hbBg);
-  const hbFill=new THREE.Mesh(new THREE.PlaneGeometry(.78,.08),new THREE.MeshBasicMaterial({color:0x00aaff,side:THREE.DoubleSide})); hbFill.position.set(0,2.35,.01); g.add(hbFill);
-  const nm=new THREE.Mesh(new THREE.BoxGeometry(.15,.15,.15),new THREE.MeshBasicMaterial({color:0x00aaff})); nm.position.y=2.6; g.add(nm);
-  return {group:g, hbFill};
+  // HP bar
+  const hbBg=new THREE.Mesh(new THREE.PlaneGeometry(.8,.1),new THREE.MeshBasicMaterial({color:0x001133,side:THREE.DoubleSide,depthTest:false})); hbBg.position.y=2.35; g.add(hbBg);
+  const hbFill=new THREE.Mesh(new THREE.PlaneGeometry(.78,.08),new THREE.MeshBasicMaterial({color:0x00aaff,side:THREE.DoubleSide,depthTest:false})); hbFill.position.set(0,2.35,.01); g.add(hbFill);
+  // Nametag sprite
+  const colorHex = color;
+  const nameSprite = makeNameTagSprite(name || 'PLAYER', colorHex);
+  g.add(nameSprite);
+  return {group:g, hbFill, nameSprite};
 }
 
 function updateRemotePlayer(pid, data) {
   if(!gameStarted || !scene) return;
+  const pname = (data.name || ('P_'+pid.slice(-4))).toUpperCase();
   if(!remotePlayers[pid]) {
-    const {group, hbFill} = makeRemotePlayerMesh(PLAYER_COLORS[colorIdx++ % PLAYER_COLORS.length]);
+    const col = PLAYER_COLORS[colorIdx++ % PLAYER_COLORS.length];
+    const {group, hbFill, nameSprite} = makeRemotePlayerMesh(col, pname);
     scene.add(group);
-    remotePlayers[pid] = {mesh:group, hbFill, hp:100, kills:0};
+    remotePlayers[pid] = {mesh:group, hbFill, nameSprite, hp:100, kills:0, name:pname};
     const cc = document.getElementById('conn-count'); if(cc) cc.textContent = Object.keys(remotePlayers).length + 1;
   }
   const rp = remotePlayers[pid];
+  // Update nametag if name changed
+  if(data.name && data.name !== rp.name) {
+    rp.name = data.name;
+    if(rp.nameSprite) {
+      rp.mesh.remove(rp.nameSprite);
+      const col = PLAYER_COLORS[(colorIdx-1) % PLAYER_COLORS.length];
+      rp.nameSprite = makeNameTagSprite(data.name, col);
+      rp.mesh.add(rp.nameSprite);
+    }
+  }
   rp.mesh.position.set(data.x, 0, data.z);
   rp.mesh.rotation.y = data.yaw + Math.PI;
   rp.hp = data.hp; rp.kills = data.kills; rp.lastSeen = Date.now();
   const r = Math.max(0, data.hp / 100); rp.hbFill.scale.x = r; rp.hbFill.position.x = -(1-r)*.39;
+  // Nametag always faces camera
+  if(rp.nameSprite) rp.nameSprite.quaternion.copy(camera.quaternion);
 }
 
 function removeRemotePlayer(pid) {
