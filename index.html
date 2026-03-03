@@ -353,40 +353,51 @@ body{background:#000;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-act
     <!-- CREATE ROOM -->
     <div class="mp-card" style="min-width:240px;flex:1;">
       <div class="mp-card-title">&#x2795; CREATE ROOM</div>
-      <p>Share this code with friends</p>
-      <div id="room-code-box" onclick="copyCode()" title="Click to copy">------</div>
-      <div id="copy-hint">Tap to copy code</div>
-      <div id="mp-status">Generating room...</div>
-      <div id="mp-players-list"></div>
-      <button class="mp-btn" id="btn-create-start" onclick="hostStartGame()" style="margin-top:10px;">&#x25B6; START TRAINING</button>
+      <p style="color:#446;font-size:12px;margin-bottom:8px;">Click below to generate your room</p>
+      <div id="room-code-box" onclick="copyCode()" title="Click to copy" style="cursor:pointer;">------</div>
+      <div id="copy-hint" style="font-size:10px;color:#445;margin:4px 0;">Room code will appear here</div>
+      <div id="mp-status" style="font-size:11px;color:#445;min-height:16px;"></div>
+      <div id="mp-players-list" style="font-size:11px;color:#667;margin-top:4px;"></div>
+      <button class="mp-btn" id="btn-create-start" onclick="hostStartGame()" style="margin-top:10px;">
+        &#x25B6; START TRAINING
+      </button>
     </div>
 
     <!-- JOIN ROOM -->
     <div class="mp-card" style="min-width:240px;flex:1;">
       <div class="mp-card-title">&#x1F50D; JOIN ROOM</div>
-      <p>Enter room code from your friend</p>
+      <p style="color:#446;font-size:12px;margin-bottom:8px;">Enter code from friend or click a room below</p>
       <input id="join-input" type="text" maxlength="20" placeholder="ENTER CODE HERE"
         oninput="this.value=this.value.toUpperCase().replace(/\s/g,'')"
         onkeydown="if(event.key==='Enter'){event.preventDefault();event.stopPropagation();window.joinRoom();}"/>
-      <button class="mp-btn" id="btn-do-join" onclick="window.joinRoom()" style="background:linear-gradient(135deg,#006633,#003311);color:#aaffcc;margin-top:4px;">
+      <button class="mp-btn" id="btn-do-join" onclick="window.joinRoom()"
+        style="background:linear-gradient(135deg,#006633,#003311);color:#aaffcc;margin-top:4px;">
         &#x1F91D; JOIN GAME
       </button>
-      <div id="join-status" style="color:#667;font-size:12px;text-align:center;margin-top:6px;"></div>
+      <div id="join-status" style="color:#667;font-size:12px;text-align:center;margin-top:6px;min-height:16px;"></div>
     </div>
 
     <!-- ACTIVE ROOMS -->
     <div class="mp-card" style="min-width:240px;flex:1;">
       <div class="mp-card-title" style="display:flex;justify-content:space-between;align-items:center;">
         <span>&#x1F30D; ACTIVE ROOMS</span>
-        <button onclick="refreshRoomList()" style="background:rgba(0,100,200,.4);border:1px solid #336;color:#adf;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:10px;">&#x21BB; REFRESH</button>
+        <button onclick="refreshRoomList()"
+          style="background:rgba(0,100,200,.4);border:1px solid #336;color:#adf;
+                 padding:3px 10px;border-radius:6px;cursor:pointer;font-size:10px;">&#x21BB; REFRESH</button>
       </div>
-      <div id="room-list-status" style="color:#445;font-size:11px;text-align:center;margin:4px 0;">Loading...</div>
+      <div id="room-list-status" style="color:#445;font-size:11px;text-align:center;margin:6px 0;">Click refresh to search</div>
       <div id="active-rooms-list" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto;"></div>
     </div>
 
   </div>
 
-  <button class="mp-back-btn" onclick="backToMain()">&#x2190; BACK</button>
+  <!-- BACK BUTTON — big and clear -->
+  <button onclick="backToMain()"
+    style="margin-top:18px;padding:10px 32px;background:rgba(40,10,10,.8);
+           border:1.5px solid rgba(255,80,80,.4);color:#ff8888;border-radius:10px;
+           font-size:13px;letter-spacing:2px;cursor:pointer;font-family:inherit;">
+    &#x2190; BACK TO MENU
+  </button>
 </div>
 
 <!-- END SCREEN -->
@@ -431,7 +442,7 @@ let scene, camera, renderer, clock;
 let gameStarted = false, gameOver = false;
 let gameMode = null; // 'single' | 'multi'
 
-const player = { hp:100, shield:70, ammo:30, ammoRes:120, kills:0, alive:true };
+const player = { hp:100, shield:100, ammo:30, ammoRes:120, kills:0, alive:true };
 const keys = {};
 let cameraYaw=0, cameraPitch=0, isPointerLocked=false;
 let moveVec={x:0,y:0}, lookVec={x:0,y:0};
@@ -515,6 +526,12 @@ function setupConn(conn, weAreHost) {
     delete peerConnections[pid];
     if(gameStarted) removeRemotePlayer(pid);
     updateLobbyPlayerCount();
+    // Update room player count in LS
+    if(myRoomCode && isHost) {
+      const count = Object.keys(peerConnections).length + 1;
+      if(count <= 1 && gameStarted) _removeRoomFromLS(myRoomCode); // host alone → remove
+      else if(myRoomCode) _storeRoomInLS(myRoomCode, count);
+    }
   });
   conn.on('error', () => { delete peerConnections[pid]; });
 }
@@ -588,17 +605,64 @@ function updateLobbyPlayerCount() {
 //  HOST START / BACK
 // ================================================================
 function hostStartGame() {
-  isHost = true;
-  Object.values(peerConnections).forEach(c => { if(c.open) c.send({type:'start_game'}); });
-  gameMode = 'multi';
-  document.getElementById('mpscreen').style.display = 'none';
-  initGame();
+  document.getElementById('btn-create-start').disabled = true;
+  document.getElementById('mp-status').textContent = '⏳ Creating room...';
+
+  function _start() {
+    isHost = true;
+    // Register room in LS NOW (game is starting)
+    if(myRoomCode) _storeRoomInLS(myRoomCode, Object.keys(peerConnections).length + 1);
+    // Tell any already-connected peers to start
+    Object.values(peerConnections).forEach(c => { if(c.open) c.send({type:'start_game'}); });
+    gameMode = 'multi';
+    document.getElementById('mpscreen').style.display = 'none';
+    initGame();
+  }
+
+  // If peer already created (someone joined while waiting), start immediately
+  if(myPeer && !myPeer.destroyed && myPeerId) {
+    _start();
+    return;
+  }
+
+  // Create peer now
+  let waited = 0;
+  const t = setInterval(() => {
+    waited += 300;
+    if(typeof Peer !== 'undefined') { clearInterval(t); _createHostPeerThenStart(_start); }
+    else if(waited > 8000) { clearInterval(t); document.getElementById('mp-status').textContent = '⚠ PeerJS failed'; document.getElementById('btn-create-start').disabled=false; }
+  }, 300);
+  if(typeof Peer !== 'undefined') { clearInterval(t); _createHostPeerThenStart(_start); }
+}
+
+function _createHostPeerThenStart(onReady) {
+  const code = 'FZ' + Math.random().toString(36).slice(2,6).toUpperCase();
+  if(myPeer && !myPeer.destroyed) myPeer.destroy();
+  myPeer = new Peer(code, {
+    host:'0.peerjs.com', port:443, path:'/', secure:true,
+    config:{ iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}] }
+  });
+  myPeer.on('open', id => {
+    myPeerId = id; myRoomCode = id;
+    document.getElementById('room-code-box').textContent = id;
+    document.getElementById('mp-status').textContent = '✅ Room: ' + id;
+    onReady();
+  });
+  myPeer.on('error', err => {
+    if(err.type === 'unavailable-id') { _createHostPeerThenStart(onReady); return; }
+    document.getElementById('mp-status').textContent = '⚠ ' + err.type;
+    document.getElementById('btn-create-start').disabled = false;
+  });
+  myPeer.on('connection', conn => { setupConn(conn, true); updateLobbyPlayerCount(); });
 }
 
 function backToMain() {
+  if(myRoomCode) _removeRoomFromLS(myRoomCode);
   document.getElementById('mpscreen').style.display = 'none';
   document.getElementById('startscreen').style.display = 'flex';
   if(myPeer && !myPeer.destroyed) { myPeer.destroy(); myPeer = null; }
+  myRoomCode = null; myPeerId = null;
+  Object.keys(peerConnections).forEach(k => delete peerConnections[k]);
 }
 
 function copyCode() {
@@ -725,6 +789,15 @@ function _storeRoomInLS(code, players) {
   } catch(e) {}
 }
 
+function _removeRoomFromLS(code) {
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    delete all[code];
+    localStorage.setItem(LS_KEY, JSON.stringify(all));
+    if(_bcChannel) _bcChannel.postMessage({type:'remove', code});
+  } catch(e) {}
+}
+
 function refreshRoomList() {
   const listEl = document.getElementById('active-rooms-list');
   const stEl   = document.getElementById('room-list-status');
@@ -750,11 +823,14 @@ function refreshRoomList() {
   if(_bcChannel) {
     const h = e => {
       if(e.data && e.data.type === 'update') {
-        // Merge
         const found = rooms.findIndex(r => r.code === e.data.code);
         if(found >= 0) rooms[found] = {code:e.data.code, players:e.data.players, ts:e.data.ts};
         else rooms.push({code:e.data.code, players:e.data.players, ts:e.data.ts});
         _renderRooms(rooms);
+      }
+      if(e.data && e.data.type === 'remove') {
+        const idx = rooms.findIndex(r => r.code === e.data.code);
+        if(idx >= 0) { rooms.splice(idx, 1); _renderRooms(rooms); }
       }
     };
     _bcChannel.addEventListener('message', h);
@@ -1612,11 +1688,15 @@ function exitGame(){
   // Clear scene
   if(scene){ while(scene.children.length>0) scene.remove(scene.children[0]); scene=null; }
   if(renderer){ renderer.dispose(); }
+  // Remove room from active list
+  if(myRoomCode) _removeRoomFromLS(myRoomCode);
   // Clear multiplayer
   if(updateInterval){ clearInterval(updateInterval); updateInterval=null; }
   Object.values(peerConnections).forEach(c=>c.close&&c.close());
   Object.keys(peerConnections).forEach(k=>delete peerConnections[k]);
   Object.keys(remotePlayers).forEach(k=>delete remotePlayers[k]);
+  myRoomCode=null; myPeerId=null;
+  if(myPeer && !myPeer.destroyed){ myPeer.destroy(); myPeer=null; }
   // Show main menu
   document.getElementById('startscreen').style.display='flex';
   document.getElementById('mpscreen').style.display='none';
@@ -1850,8 +1930,18 @@ function updateHUD(){
 window.showMpLobby = function() {
   document.getElementById('startscreen').style.display='none';
   document.getElementById('mpscreen').style.display='flex';
-  initPeerWithCode();
-  setTimeout(refreshRoomList, 1500);
+  // Reset lobby UI — do NOT create room yet
+  document.getElementById('room-code-box').textContent='------';
+  document.getElementById('copy-hint').textContent='Room code will appear after you start';
+  document.getElementById('mp-status').textContent='';
+  document.getElementById('mp-players-list').textContent='';
+  document.getElementById('join-status').textContent='';
+  document.getElementById('join-input').value='';
+  document.getElementById('btn-do-join').disabled=false;
+  // Destroy any stale peer
+  if(myPeer && !myPeer.destroyed){ myPeer.destroy(); myPeer=null; }
+  myRoomCode=null;
+  refreshRoomList();
 };
 
 window.joinRoom = function() {
